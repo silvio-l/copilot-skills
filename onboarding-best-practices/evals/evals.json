@@ -1,0 +1,74 @@
+{
+  "skill_name": "onboarding-best-practices",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review our mobile app onboarding. Right now we show three intro slides, then ask for notification permission immediately, and the paywall appears before the user sees any personalized result. Tell me what to change.",
+      "expected_output": "The response should identify early permission and early paywall timing as problems, define activation and first value, and propose a revised onboarding flow with metrics.",
+      "files": [],
+      "expectations": [
+        "The output identifies an activation target or first-value moment.",
+        "The output flags the notification permission timing as too early or recommends just-in-time permission prompts.",
+        "The output flags the paywall as premature or recommends moving it until after value is concrete.",
+        "The output proposes onboarding metrics or event instrumentation."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design a getting-started flow for a web SaaS product for freelance designers. New users currently land on an empty dashboard and do not know what to do next. We want a better first-run experience.",
+      "expected_output": "The response should treat the empty dashboard as part of onboarding, propose a first-value path with templates or guided actions, and suggest progressive disclosure plus measurement.",
+      "files": [],
+      "expectations": [
+        "The output treats the empty state as part of onboarding.",
+        "The output proposes a concrete first-value action such as a template, checklist, sample, or guided setup.",
+        "The output recommends progressive disclosure instead of front-loading every feature.",
+        "The output includes metrics or events for onboarding or activation."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to improve activation for a budgeting app. Users sign up, answer six preference questions, and then see a blank home screen. Suggest a better first-session flow and explain where monetization should happen.",
+      "expected_output": "The response should recommend deferring non-essential preferences, creating a personalized preview or magic moment before the blank home screen, and moving monetization to a more credible point.",
+      "files": [],
+      "expectations": [
+        "The output recommends deferring or simplifying non-essential preference questions.",
+        "The output proposes a personalized preview, first result, or magic moment before the blank state.",
+        "The output gives guidance on paywall or monetization timing.",
+        "The output references activation, time-to-value, or first meaningful outcome."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Rewrite the copy for our onboarding notification pre-prompt so it sounds clearer and less robotic.",
+      "expected_output": "The response should recognize that this is primarily UI copy work, recommend using ui-copy-localization, and if it answers directly it should keep the advice tied to onboarding context and permission timing.",
+      "files": [],
+      "expectations": [
+        "The output mentions ui-copy-localization or clearly frames the task as UI copy work.",
+        "The output keeps the recommendation tied to onboarding context or permission timing.",
+        "The output does not turn into a generic onboarding audit."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Audit our iOS onboarding for Sign in with Apple, notification permission timing, and App Store review risks.",
+      "expected_output": "The response should recognize the onboarding context but also explicitly call for apple-guidelines-review because Apple-specific review and compliance are a primary concern.",
+      "files": [],
+      "expectations": [
+        "The output mentions apple-guidelines-review or explicitly calls out Apple-specific review as required.",
+        "The output still addresses onboarding-specific concerns such as permission timing or first-run flow.",
+        "The output does not present itself as sufficient for full Apple review on its own."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Implement email/password signup with password reset and session handling for our app.",
+      "expected_output": "This should function as a boundary case showing that plain auth implementation is not primary onboarding-skill work. The result should scope out of onboarding or state that a more specific auth or implementation skill should lead.",
+      "files": [],
+      "expectations": [
+        "The output treats this as generic signup or auth implementation rather than onboarding design.",
+        "The output scopes out or redirects instead of performing a full onboarding audit.",
+        "The output does not claim onboarding-best-practices is the primary skill for this request."
+      ]
+    }
+  ]
+}

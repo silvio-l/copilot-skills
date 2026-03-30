@@ -1,24 +1,24 @@
 ---
 name: performance-regression-scan
-description: Prüfe Änderungen oder Codepfade auf potenzielle Performance-Regressionen, unnötige Arbeit, überflüssige I/O-, Render-, Sync- oder Datenbewegungen.
+description: Review changes or code paths for potential performance regressions, unnecessary work, redundant I/O, rendering, sync, or data movement.
 ---
 
 # Performance Regression Scan Skill
 
-## Ziel
-Frühe Erkennung typischer Performance-Risiken nach Änderungen.
+## Goal
+Early detection of typical performance risks after changes.
 
-## Prüfpunkte
-- unnötige Wiederholungen / Schleifen / Traversals
-- zu häufige Re-Renders / Recomputations / Rebuilds
-- unnötige Netzwerk-, Dateisystem- oder DB-Zugriffe
-- fehlendes Caching oder falsches Caching
-- blockierende Arbeit in kritischen Pfaden
-- teure Mapping- oder Serialisierungsketten
+## Check Points
+- Unnecessary repetitions / loops / traversals
+- Too frequent re-renders / recomputations / rebuilds
+- Unnecessary network, filesystem, or DB accesses
+- Missing caching or incorrect caching
+- Blocking work in critical paths
+- Expensive mapping or serialization chains
 
-## Ausgabeformat
-1. relevante Pfade
-2. potenzielle Regressionen
-3. Schweregrad / Wahrscheinlichkeit
-4. empfohlene Gegenmaßnahmen
-5. Mess- / Prüfempfehlungen
+## Output Format
+1. Relevant paths
+2. Potential regressions
+3. Severity / likelihood
+4. Recommended countermeasures
+5. Measurement / verification recommendations

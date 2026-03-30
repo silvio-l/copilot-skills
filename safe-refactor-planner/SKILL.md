@@ -1,34 +1,34 @@
 ---
 name: safe-refactor-planner
-description: Plane Refactorings so, dass sie klein, sicher, schrittweise und gut validierbar bleiben, ohne unnötige Architekturbewegung.
+description: Plan refactorings to stay small, safe, incremental, and well-validatable without unnecessary architecture movement.
 ---
 
 # Safe Refactor Planner Skill
 
-## Ziel
-Einen Refactor in kleine, kontrollierbare Schritte zerlegen.
+## Goal
+Break a refactor into small, controllable steps.
 
-## Vorgehen
-1. Refactor-Ziel klar benennen
-2. Bestandscode und Abhängigkeiten erfassen
-3. Risiken und fragile Stellen markieren
-4. Kleinstmögliche Schritte planen
-5. Für jeden Schritt definieren:
-   - Zweck
-   - geänderte Dateien
-   - erwarteter Nutzen
-   - Validierung
-   - Rollback-Fähigkeit
+## Workflow
+1. Clearly name the refactor goal
+2. Capture existing code and dependencies
+3. Mark risks and fragile areas
+4. Plan the smallest possible steps
+5. For each step define:
+   - Purpose
+   - Changed files
+   - Expected benefit
+   - Validation
+   - Rollback capability
 
-## Regeln
-- Verhalten nicht unbeabsichtigt ändern
-- Refactor nicht mit Feature-Arbeit vermischen, außer bewusst und explizit
-- zuerst Stabilisierung, dann Strukturverbesserung
+## Rules
+- Do not unintentionally change behavior
+- Do not mix refactoring with feature work, unless deliberate and explicit
+- Stabilization first, then structural improvement
 
-## Ausgabeformat
-1. Refactor-Ziel
-2. relevante Bereiche
-3. Risiken
-4. Schrittplan
-5. Validierung je Schritt
-6. Rollback-/Sicherheitsstrategie
+## Output Format
+1. Refactor goal
+2. Relevant areas
+3. Risks
+4. Step plan
+5. Validation per step
+6. Rollback / safety strategy

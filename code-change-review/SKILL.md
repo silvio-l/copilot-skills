@@ -1,25 +1,25 @@
 ---
 name: code-change-review
-description: Prüfe Änderungen auf Korrektheit, Regressionen, Kopplung, Boundary-Verletzungen, Wartbarkeit und ungewollte Seiteneffekte.
+description: Review changes for correctness, regressions, coupling, boundary violations, maintainability, and unintended side effects.
 ---
 
 # Code Change Review Skill
 
-## Ziel
-Eine Änderung wie ein erfahrener Reviewer prüfen.
+## Goal
+Review a change like an experienced reviewer.
 
-## Prüffokus
-- erfüllt die Änderung wirklich das Ziel?
-- wurde die Root Cause getroffen?
-- entstehen Regressionen?
-- bleibt die Architektur sauber?
-- ist die Änderung kleiner als nötig oder größer als nötig?
-- fehlen Tests oder Guards?
+## Review Focus
+- Does the change actually achieve its goal?
+- Was the root cause addressed?
+- Are regressions introduced?
+- Does the architecture remain clean?
+- Is the change smaller or larger than necessary?
+- Are tests or guards missing?
 
-## Ausgabeformat
-1. Kurzbewertung
-2. funktionale Risiken
-3. Architektur- / Boundary-Risiken
-4. Wartbarkeitsrisiken
-5. fehlende Validierung
-6. konkrete Verbesserungsvorschläge
+## Output Format
+1. Brief assessment
+2. Functional risks
+3. Architecture / boundary risks
+4. Maintainability risks
+5. Missing validation
+6. Concrete improvement suggestions

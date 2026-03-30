@@ -1,25 +1,25 @@
 ---
 name: implementation-plan
-description: Erstelle einen präzisen, risikoarmen Implementierungsplan für ein Vorhaben oder eine Änderung, inklusive betroffener Dateien, Logik, Risiken und Validierung.
+description: Create a precise, low-risk implementation plan for an initiative or change, including affected files, logic, risks, and validation.
 ---
 
 # Implementation Plan Skill
 
-## Ziel
-Vor dem Coding einen belastbaren Plan erzeugen.
+## Goal
+Produce a reliable plan before coding.
 
-## Vorgehen
-1. Ziel und Grenzen in eigenen Worten beschreiben
-2. Betroffene Dateien / Module identifizieren
-3. Notwendige Logikänderungen benennen
-4. Risiken, Seiteneffekte und Annahmen dokumentieren
-5. Validierungsschritte definieren
-6. Nur danach implementieren
+## Workflow
+1. Describe goal and boundaries in own words
+2. Identify affected files / modules
+3. Name necessary logic changes
+4. Document risks, side effects, and assumptions
+5. Define validation steps
+6. Only then implement
 
-## Ausgabeformat
-1. Ziel
-2. betroffene Bereiche
-3. geplante Änderungen
-4. Risiken / Annahmen
-5. Validierung
-6. empfohlene Reihenfolge
+## Output Format
+1. Goal
+2. Affected areas
+3. Planned changes
+4. Risks / assumptions
+5. Validation
+6. Recommended order

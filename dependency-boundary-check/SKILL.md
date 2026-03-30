@@ -1,23 +1,23 @@
 ---
 name: dependency-boundary-check
-description: Finde unerwünschte Abhängigkeiten, Schichtverletzungen, zyklische Kopplung und ungeeignete Shared-Abstraktionen in einer Codebasis oder Änderung.
+description: Find unwanted dependencies, layer violations, cyclic coupling, and inappropriate shared abstractions in a codebase or change.
 ---
 
 # Dependency Boundary Check Skill
 
-## Ziel
-Abhängigkeitsprobleme sichtbar machen, bevor sie die Architektur erodieren.
+## Goal
+Make dependency problems visible before they erode the architecture.
 
-## Prüfpunkte
-- verbotene Richtungen zwischen Layern
-- Zyklen oder implizite Kopplung
-- Shared-Code-Missbrauch
-- Infrastrukturwissen in Domain / Use Cases
-- UI oder Delivery als Träger fachlicher Entscheidungen
+## Check Points
+- Forbidden directions between layers
+- Cycles or implicit coupling
+- Shared code misuse
+- Infrastructure knowledge in domain / use cases
+- UI or delivery carrying domain decisions
 
-## Ausgabeformat
-1. beobachtete Abhängigkeiten
-2. Boundary-Verletzungen
-3. Kopplungsrisiken
-4. empfohlene Korrekturen
-5. minimale Sofortmaßnahmen
+## Output Format
+1. Observed dependencies
+2. Boundary violations
+3. Coupling risks
+4. Recommended corrections
+5. Minimal immediate actions

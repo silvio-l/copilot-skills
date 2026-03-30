@@ -1,32 +1,32 @@
 ---
 name: test-strategy
-description: Entwickle eine passende Test- und Validierungsstrategie für Änderungen, Bugs, Refactorings oder neue Features, sprach- und frameworkunabhängig.
+description: Develop an appropriate test and validation strategy for changes, bugs, refactorings, or new features, language- and framework-agnostic.
 ---
 
 # Test Strategy Skill
 
-## Ziel
-Genau dort testen, wo das Risiko und der Wert sitzen.
+## Goal
+Test exactly where risk and value reside.
 
-## Vorgehen
-1. Änderungsart bestimmen:
-   - Bugfix
+## Workflow
+1. Determine change type:
+   - Bug fix
    - Feature
    - Refactor
-   - Architekturänderung
-2. Risiken und kritische Flows bestimmen
-3. Geeignete Testebenen auswählen:
-   - statische Analyse / Lint
-   - Unit
-   - Integration
-   - Flow / E2E
-   - manuelle Kernschritte
-4. Minimal sinnvolle Testmenge definieren
-5. Restrisiken transparent machen
+   - Architecture change
+2. Determine risks and critical flows
+3. Select appropriate test levels:
+   - static analysis / lint
+   - unit
+   - integration
+   - flow / E2E
+   - manual core steps
+4. Define minimal meaningful test set
+5. Make residual risks transparent
 
-## Ausgabeformat
-1. Risikoanalyse
-2. empfohlene Testebenen
-3. konkrete Prüffälle
-4. manuelle Validierung
-5. Restrisiken
+## Output Format
+1. Risk analysis
+2. Recommended test levels
+3. Concrete test cases
+4. Manual validation
+5. Residual risks

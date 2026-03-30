@@ -1,33 +1,33 @@
 ---
 name: clean-architecture-review
-description: Prüfe eine Änderung, ein Feature oder einen Bestandscode auf Clean-Architecture-Tauglichkeit, Layer-Verletzungen, Kopplung und falsch platzierte Verantwortlichkeiten.
+description: Review a change, feature, or existing code for clean architecture compliance, layer violations, coupling, and misplaced responsibilities.
 ---
 
 # Clean Architecture Review Skill
 
-## Ziel
-Prüfe, ob Code, Änderungen oder Architekturentscheidungen saubere Verantwortlichkeiten und stabile Abhängigkeiten wahren.
+## Goal
+Verify that code, changes, or architecture decisions maintain clean responsibilities and stable dependencies.
 
-## Prüffokus
-- richtige Schicht für die jeweilige Logik
-- Abhängigkeitsrichtung
-- Leaking von Infrastruktur- oder Transportdetails
-- falsche Shared-Abstraktionen
-- zu frühe Generalisierung
-- Querkopplung zwischen Features
+## Review Focus
+- Correct layer for the given logic
+- Dependency direction
+- Leaking of infrastructure or transport details
+- Inappropriate shared abstractions
+- Premature generalization
+- Cross-coupling between features
 
-## Vorgehen
-1. Benenne die relevanten Layer / Module.
-2. Ordne Verantwortlichkeiten zu.
-3. Suche Boundary-Verletzungen.
-4. Prüfe Abhängigkeitsrichtung und Kopplung.
-5. Prüfe, ob die Lösung lokal genug ist.
-6. Gib konkrete Verbesserungsvorschläge mit möglichst kleinem Eingriff.
+## Workflow
+1. Name the relevant layers / modules.
+2. Assign responsibilities.
+3. Search for boundary violations.
+4. Check dependency direction and coupling.
+5. Check whether the solution is local enough.
+6. Provide concrete improvement suggestions with minimal intervention.
 
-## Ausgabeformat
-1. Beobachtete Struktur
-2. Verantwortlichkeiten je Bereich
-3. Layer- / Boundary-Verletzungen
-4. Kopplungs- und Wartbarkeitsrisiken
-5. Konkrete Verbesserungen
-6. Minimaler empfohlener Eingriff
+## Output Format
+1. Observed structure
+2. Responsibilities per area
+3. Layer / boundary violations
+4. Coupling and maintainability risks
+5. Concrete improvements
+6. Minimal recommended intervention

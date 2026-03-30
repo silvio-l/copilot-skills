@@ -1,26 +1,26 @@
 ---
 name: feature-slice-planner
-description: Zerlege ein Vorhaben in fachlich sinnvolle, kleine, umsetzbare Feature-Slices mit klaren Grenzen, Risiken und Abhängigkeiten.
+description: Decompose an initiative into domain-meaningful, small, actionable feature slices with clear boundaries, risks, and dependencies.
 ---
 
 # Feature Slice Planner Skill
 
-## Ziel
-Große Vorhaben in kleine, verständliche, risikoarme und architekturtreue Scheiben zerlegen.
+## Goal
+Break large initiatives into small, understandable, low-risk, architecture-respecting slices.
 
-## Vorgehen
-1. Ziel und Nutzerwirkung klären
-2. Domänenlogik, Zustände, Eingaben, Ausgaben und Integrationen identifizieren
-3. In vertikale Slices schneiden:
-   - bevorzugt nutzbare Teilresultate
-   - begrenztes Risiko
-   - klare Akzeptanzkriterien
-4. Abhängigkeiten und Reihenfolge bestimmen
-5. Risiken und offene Entscheidungen markieren
+## Workflow
+1. Clarify goal and user impact
+2. Identify domain logic, states, inputs, outputs, and integrations
+3. Cut into vertical slices:
+   - prefer usable partial results
+   - limited risk
+   - clear acceptance criteria
+4. Determine dependencies and order
+5. Mark risks and open decisions
 
-## Ausgabeformat
-1. Zielbild
-2. identifizierte Bausteine
-3. empfohlene Feature-Slices
-4. Reihenfolge / Abhängigkeiten
-5. Risiken / offene Punkte
+## Output Format
+1. Target picture
+2. Identified building blocks
+3. Recommended feature slices
+4. Order / dependencies
+5. Risks / open items

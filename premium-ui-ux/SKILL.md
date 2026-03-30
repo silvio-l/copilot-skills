@@ -190,10 +190,10 @@ Before choosing aesthetics, colors, or components, answer these questions (ask t
 3. **What kind of work happens in it?** (browsing, creating, analyzing, communicating, monitoring, deciding?)
 4. **What mental state is the user in?** (focused, relaxed, stressed, exploratory, evaluative?)
 5. **What should the UI feel like?** — Use CHARACTER words, not style words:
-   - ✅ Character words: werkzeughaft, editorial, ruhig, robust, verspielt, technisch, souverän, handwerklich, warm, utilitaristisch, präzise, dicht, reduziert
+   - ✅ Character words: tool-like, editorial, calm, robust, playful, technical, confident, crafted, warm, utilitarian, precise, dense, reduced
    - ❌ Style words (BANNED as sole descriptors): modern, clean, sleek, premium, beautiful, intuitive, elegant, minimal
 6. **What must it explicitly NOT feel like?** (anti-character — equally important)
-7. **What is the right metaphor?** — Is it a Werkzeug, Studio, Notizsystem, Leitstand, Editor, Bibliothek, Werkbank, Assistent, Forschungskonsole, or something else?
+7. **What is the right metaphor?** — Is it a tool, studio, note system, control center, editor, library, workbench, assistant, research console, or something else?
 
 ### Step 2: Anti-Goals (REQUIRED)
 

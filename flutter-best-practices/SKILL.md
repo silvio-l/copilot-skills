@@ -5,29 +5,29 @@ description: "MUST USE for ALL Flutter/Dart code changes. Invoke this skill IMME
 
 # Flutter Best Practices — Production-Grade Mobile Apps
 
-Du bist der Qualitäts-Gate-Keeper für Flutter/Dart-Code. Jede Änderung an `.dart`-Dateien MUSS diesen Regeln folgen. Keine Ausnahmen.
+You are the quality gate-keeper for Flutter/Dart code. Every change to `.dart` files MUST follow these rules. No exceptions.
 
 ---
 
-## 🔴 REGEL #1: Wiederverwendbare Widgets über alles
+## 🔴 RULE #1: Reusable Widgets Above All
 
-**Das ist die wichtigste Regel.** Eine gute UI/UX lebt von konsistenter Benutzererfahrung durch wiederverwendbare, konsistente Widgets. Inkonsistente Screens und Widgets sind der häufigste Qualitätskiller.
+**This is the most important rule.** Good UI/UX depends on a consistent user experience through reusable, consistent widgets. Inconsistent screens and widgets are the most common quality killer.
 
-### Pflichten
+### Requirements
 
-1. **Bevor du ein neues Widget schreibst**: Suche in `lib/core/widgets/` und im Feature-Ordner, ob ein ähnliches Widget existiert. Erweitere es statt neu zu schreiben.
-2. **Gemeinsame UI-Muster zentral halten**: Buttons, Cards, Form-Felder, Bottom-Sheets, Dialoge, Empty-States, Loading-States — alles in `lib/core/widgets/`.
-3. **Screen-Grundgerüste teilen**: Wenn mehrere Screens dasselbe Layout haben (Header, Body, FAB), extrahiere ein Scaffold-Widget.
-4. **Widget-API-Design**:
-   - Nur nötige Parameter exposen (Label, Callback, Style-Overrides)
-   - `const`-Konstruktoren wo möglich
-   - Doc-Kommentare (`///`) für Klasse und öffentliche Parameter
-   - Keine Geschäftslogik im Widget — die gehört in Provider/Repository
+1. **Before writing a new widget**: Search `lib/core/widgets/` and the feature folder for a similar existing widget. Extend it instead of writing a new one.
+2. **Keep shared UI patterns centralized**: Buttons, Cards, Form fields, Bottom-Sheets, Dialogs, Empty-States, Loading-States — all belong in `lib/core/widgets/`.
+3. **Share screen scaffolds**: If multiple screens share the same layout (Header, Body, FAB), extract a Scaffold widget.
+4. **Widget API design**:
+   - Only expose necessary parameters (Label, Callback, Style-Overrides)
+   - `const` constructors where possible
+   - Doc comments (`///`) for classes and public parameters
+   - No business logic in widgets — that belongs in Provider/Repository
 
-### Anti-Patterns (VERBOTEN)
+### Anti-Patterns (FORBIDDEN)
 
 ```dart
-// ❌ VERBOTEN: Inline-Styling, das sich auf 5 Screens wiederholt
+// ❌ FORBIDDEN: Inline styling repeated across 5 screens
 Container(
   padding: EdgeInsets.all(16),
   decoration: BoxDecoration(
@@ -37,7 +37,7 @@ Container(
   child: ...
 )
 
-// ✅ RICHTIG: Wiederverwendbares Widget mit Theme-Anbindung
+// ✅ CORRECT: Reusable widget with theme binding
 class AppCard extends StatelessWidget {
   final Widget child;
   final EdgeInsets? padding;
@@ -57,66 +57,66 @@ class AppCard extends StatelessWidget {
 }
 ```
 
-### Konsistenz-Checkliste (bei jedem Screen-Review)
+### Consistency Checklist (for every screen review)
 
-- [ ] Verwendet der Screen dasselbe Scroll-Verhalten wie alle anderen Screens?
-- [ ] Sind Header, Spacing, Typografie identisch zu Geschwister-Screens?
-- [ ] Verwendet der Screen zentrale Widgets statt Inline-Definitionen?
-- [ ] Sind Eingabeformulare über das gemeinsame FormSheet-Widget gebaut?
-- [ ] Sind Empty-States über das gemeinsame EmptyState-Widget gebaut?
-- [ ] Sind Farben über `Theme.of(context).colorScheme` referenziert?
+- [ ] Does the screen use the same scroll behavior as all other screens?
+- [ ] Are header, spacing, and typography identical to sibling screens?
+- [ ] Does the screen use centralized widgets instead of inline definitions?
+- [ ] Are input forms built using the shared FormSheet widget?
+- [ ] Are empty states built using the shared EmptyState widget?
+- [ ] Are colors referenced via `Theme.of(context).colorScheme`?
 
 ---
 
-## 🔴 REGEL #2: Intuitive Gestensteuerung
+## 🔴 RULE #2: Intuitive Gesture Controls
 
-Mobile Apps MÜSSEN sich nativ anfühlen. Gestensteuerung ist kein Nice-to-have — sie ist Pflicht auf Screen-, Widget- und Komponenten-Ebene.
+Mobile apps MUST feel native. Gesture controls are not a nice-to-have — they are mandatory at the screen, widget, and component level.
 
-### Pflicht-Gesten
+### Required Gestures
 
-| Kontext | Geste | Flutter-Widget | Details |
-|---------|-------|----------------|---------|
-| Listen-Items löschen | Swipe-to-Dismiss | `Dismissible` | Roter Hintergrund mit Trash-Icon, Undo-Snackbar |
-| Scrollbare Listen | Pull-to-Refresh | `RefreshIndicator` | Nur bei Daten, die aktualisiert werden können |
-| Bottom-Sheets/Modals | Swipe-Down-to-Close | `DraggableScrollableSheet` / `showModalBottomSheet(enableDrag: true)` | Drag-Handle oben sichtbar |
-| Navigations-Rückkehr | Swipe-Back (Edge) | `WillPopScope` / iOS-native | Nicht blockieren! Nur bei ungespeicherten Änderungen warnen |
-| Sortierbare Listen | Long-Press + Drag | `ReorderableListView` | Haptic Feedback bei Drag-Start |
-| Formulare / Inputs | Tap-Outside-to-Dismiss-Keyboard | `GestureDetector(onTap: () => FocusScope.of(context).unfocus())` | Auf jedem Screen mit Inputs |
+| Context | Gesture | Flutter Widget | Details |
+|---------|---------|----------------|---------|
+| Deleting list items | Swipe-to-Dismiss | `Dismissible` | Red background with trash icon, undo snackbar |
+| Scrollable lists | Pull-to-Refresh | `RefreshIndicator` | Only for data that can be refreshed |
+| Bottom-Sheets/Modals | Swipe-Down-to-Close | `DraggableScrollableSheet` / `showModalBottomSheet(enableDrag: true)` | Drag handle visible at top |
+| Navigation back | Swipe-Back (Edge) | `WillPopScope` / iOS-native | Do not block! Only warn on unsaved changes |
+| Sortable lists | Long-Press + Drag | `ReorderableListView` | Haptic feedback on drag start |
+| Forms / Inputs | Tap-Outside-to-Dismiss-Keyboard | `GestureDetector(onTap: () => FocusScope.of(context).unfocus())` | On every screen with inputs |
 
 ### Haptic Feedback
 
 ```dart
 import 'package:flutter/services.dart';
 
-// Bei wichtigen Aktionen:
-HapticFeedback.lightImpact();   // Tap-Feedback
-HapticFeedback.mediumImpact();  // Drag-Start, Toggle
-HapticFeedback.heavyImpact();   // Destruktive Aktion bestätigt
-HapticFeedback.selectionClick(); // Auswahl in Liste/Picker
+// For important actions:
+HapticFeedback.lightImpact();   // Tap feedback
+HapticFeedback.mediumImpact();  // Drag start, toggle
+HapticFeedback.heavyImpact();   // Destructive action confirmed
+HapticFeedback.selectionClick(); // Selection in list/picker
 ```
 
-**Regeln für Haptic Feedback:**
-- ✅ Bei destruktiven Aktionen (Löschen), Toggles, Drag-Start/Ende
-- ✅ Bei Auswahl-Änderungen (Picker, Toggle-Gruppen)
-- ❌ NICHT bei jedem Tap auf einen Button (zu viel Vibration nervt)
-- ❌ NICHT bei Scroll-Events
+**Rules for Haptic Feedback:**
+- ✅ For destructive actions (delete), toggles, drag start/end
+- ✅ For selection changes (picker, toggle groups)
+- ❌ NOT on every button tap (too much vibration is annoying)
+- ❌ NOT on scroll events
 
-### Touch-Targets
+### Touch Targets
 
-- **Minimum 44×44 logische Pixel** — auch für Icon-Buttons
-- Verwende `IconButton` (hat automatisch 48×48) statt `GestureDetector` auf einem nackten `Icon`
-- Bei Custom-Widgets: `SizedBox(width: 44, height: 44)` als Minimum-Wrapper
+- **Minimum 44×44 logical pixels** — including for icon buttons
+- Use `IconButton` (automatically 48×48) instead of `GestureDetector` on a bare `Icon`
+- For custom widgets: `SizedBox(width: 44, height: 44)` as minimum wrapper
 
-### Gesten-Konflikte vermeiden
+### Avoiding Gesture Conflicts
 
 ```dart
-// ❌ PROBLEM: GestureDetector fängt Scroll-Events ab
+// ❌ PROBLEM: GestureDetector intercepts scroll events
 GestureDetector(
   onHorizontalDragUpdate: ...,
-  child: ListView(...),  // Scroll wird blockiert!
+  child: ListView(...),  // Scroll is blocked!
 )
 
-// ✅ LÖSUNG: Richtungsspezifisch oder mit Threshold
+// ✅ SOLUTION: Direction-specific or with threshold
 GestureDetector(
   onHorizontalDragEnd: (details) {
     if (details.primaryVelocity!.abs() > 500) { // Threshold
@@ -127,32 +127,32 @@ GestureDetector(
 )
 ```
 
-### Dual-Input-Regel: Touch + Mouse + Keyboard
+### Dual-Input Rule: Touch + Mouse + Keyboard
 
-**Mobile-first heißt NICHT touch-only.** Sobald ein Custom-Control über Standard-Widgets hinausgeht, muss es beide Bedienkonzepte gemeinsam unterstützen:
+**Mobile-first does NOT mean touch-only.** As soon as a custom control goes beyond standard widgets, it must support both input paradigms together:
 
-- **Touch**: Tap, Swipe, Drag, große Touch-Targets
-- **Mouse**: Hover-State, Klick, bei Overflow auch präziser Zugriff per Mausrad/Trackpad, Drag oder Chevron-Affordance
-- **Keyboard**: Fokus-Reihenfolge, sichtbarer Fokus, Aktivierung via Enter/Space, Erreichbarkeit versteckter Overflow-Items
+- **Touch**: Tap, Swipe, Drag, large touch targets
+- **Mouse**: Hover state, click, for overflow also precise access via scroll wheel/trackpad, drag, or chevron affordance
+- **Keyboard**: Focus order, visible focus, activation via Enter/Space, reachability of hidden overflow items
 
-#### Pflicht für horizontale Overflow-Controls
+#### Requirements for Horizontal Overflow Controls
 
-Das gilt besonders für Kategorien, Chips, Icon-/Farb-Selectoren, Recurrence-Pills und ähnliche horizontale Optionen:
+This applies especially to categories, chips, icon/color selectors, recurrence pills, and similar horizontal options:
 
-- **Nie nur `SingleChildScrollView` + `GestureDetector`**
-- Verwende **focusable** Interaktions-Widgets (`InkWell`, `IconButton`, `TextButton`, `SegmentedButton`, `ChoiceChip`) oder ein zentrales Wrapper-Widget mit Fokus-/Aktivierungslogik
-- Overflow-Inhalte müssen **mit der Maus erreichbar** sein:
-  - per Mausrad/Trackpad während Hover **oder**
-  - per Mouse-Drag auf der Scrollfläche **oder**
-  - per expliziten Scroll-Buttons/Chevrons **oder**
-  - per sichtbarer/interaktiver Scrollbar nur wenn sie funktional wirklich nötig ist
-- Overflow-Inhalte müssen **mit Keyboard erreichbar** sein:
-  - Tab-/Arrow-Navigation zu Items
-  - fokussierte Items scrollen sich bei Bedarf in den sichtbaren Bereich
-- Persistente horizontale Scrollbar-Thumbnails sind **nicht** der Default für mobile-first Picker-/Chip-Reihen; bevorzuge reduziertes Overflow-Chrome und behalte die Präzisionssteuerung über Wheel/Trackpad, Drag und Chevrons
-- Sichtbares Overflow-Chrome, das Breite kostet (z.B. Chevrons oder Scrollbars), darf schmale mobile-first Layouts nicht zusammendruecken; in reduzierten Layouts bleibt die Praezisionsbedienung bevorzugt unsichtbar
+- **Never just `SingleChildScrollView` + `GestureDetector`**
+- Use **focusable** interaction widgets (`InkWell`, `IconButton`, `TextButton`, `SegmentedButton`, `ChoiceChip`) or a centralized wrapper widget with focus/activation logic
+- Overflow content must be **reachable with a mouse**:
+  - via scroll wheel/trackpad while hovering **or**
+  - via mouse drag on the scroll area **or**
+  - via explicit scroll buttons/chevrons **or**
+  - via visible/interactive scrollbar only when functionally necessary
+- Overflow content must be **reachable with keyboard**:
+  - Tab/arrow navigation to items
+  - Focused items scroll into the visible area as needed
+- Persistent horizontal scrollbar thumbnails are **not** the default for mobile-first picker/chip rows; prefer reduced overflow chrome and keep precision control via wheel/trackpad, drag, and chevrons
+- Visible overflow chrome that takes up width (e.g. chevrons or scrollbars) must not compress narrow mobile-first layouts; in reduced layouts, precision controls should preferably remain invisible
 
-#### Verboten
+#### Forbidden
 
 ```dart
 // ❌ Touch-only Custom-Control
@@ -182,36 +182,36 @@ Listener(
 
 ---
 
-## 🟡 REGEL #3: Widget-Architektur & State Management
+## 🟡 RULE #3: Widget Architecture & State Management
 
-### Widget-Hierarchie
+### Widget Hierarchy
 
 ```
-StatelessWidget (bevorzugt)
-  └── Composition über Vererbung
-  └── const-Konstruktoren wo möglich
-  └── build() ist rein — keine Side-Effects
+StatelessWidget (preferred)
+  └── Composition over inheritance
+  └── const constructors where possible
+  └── build() is pure — no side effects
 
-StatefulWidget (nur wenn nötig)
-  └── setState() so lokal wie möglich
-  └── dispose() für ALLE Controller, Subscriptions, Timer
-  └── initState() nur für einmalige Initialisierung
+StatefulWidget (only when necessary)
+  └── setState() as local as possible
+  └── dispose() for ALL controllers, subscriptions, timers
+  └── initState() only for one-time initialization
 
 ConsumerWidget / ConsumerStatefulWidget (Riverpod)
-  └── ref.watch() für reaktive Daten
-  └── ref.read() nur in Callbacks (onPressed, onTap)
-  └── NIEMALS ref.watch() in Callbacks!
+  └── ref.watch() for reactive data
+  └── ref.read() only in callbacks (onPressed, onTap)
+  └── NEVER ref.watch() in callbacks!
 ```
 
-### State Management mit Riverpod
+### State Management with Riverpod
 
 ```dart
-// ✅ Provider-Pattern:
+// ✅ Provider pattern:
 final settingsProvider = StreamProvider<Settings>((ref) {
   return ref.watch(repositoryProvider).watchSettings();
 });
 
-// ✅ Im Widget:
+// ✅ In the widget:
 class MyWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -219,17 +219,17 @@ class MyWidget extends ConsumerWidget {
     return settings.when(
       data: (data) => Text(data.currency),
       loading: () => const CircularProgressIndicator(),
-      error: (e, st) => Text('Fehler: $e'),
+      error: (e, st) => Text('Error: $e'),
     );
   }
 }
 
-// ❌ VERBOTEN:
-ref.watch(provider);  // in onPressed-Callback
-ref.read(provider);   // in build()-Methode für reaktive Daten
+// ❌ FORBIDDEN:
+ref.watch(provider);  // in onPressed callback
+ref.read(provider);   // in build() method for reactive data
 ```
 
-### Dispose-Pflicht (Memory-Leak-Prävention)
+### Dispose Requirement (Memory Leak Prevention)
 
 ```dart
 @override
@@ -244,40 +244,40 @@ void dispose() {
 }
 ```
 
-**Regel: Jeder Controller/Subscription der in `initState()` oder im Feld erstellt wird, MUSS in `dispose()` aufgeräumt werden. Keine Ausnahmen.**
+**Rule: Every controller/subscription created in `initState()` or as a field MUST be cleaned up in `dispose()`. No exceptions.**
 
 ---
 
-## 🟡 REGEL #4: Theming & Design-Tokens
+## 🟡 RULE #4: Theming & Design Tokens
 
-### Verboten
+### Forbidden
 
 ```dart
-// ❌ NIEMALS:
-Color(0xFF1A73E8)              // Hardcoded Farbe
-Colors.white                    // Material-Farbe direkt
-TextStyle(fontSize: 16)         // Inline Text-Style
-EdgeInsets.all(16)              // Magic-Number Spacing
-BorderRadius.circular(12)       // Magic-Number Radius
+// ❌ NEVER:
+Color(0xFF1A73E8)              // Hardcoded color
+Colors.white                    // Direct Material color
+TextStyle(fontSize: 16)         // Inline text style
+EdgeInsets.all(16)              // Magic number spacing
+BorderRadius.circular(12)       // Magic number radius
 ```
 
-### Pflicht
+### Required
 
 ```dart
-// ✅ IMMER über Theme/Design-Tokens:
+// ✅ ALWAYS via Theme/Design Tokens:
 Theme.of(context).colorScheme.primary
 Theme.of(context).colorScheme.surface
-colorScheme.onSurface            // Kontrastfarbe
-AppTextStyles.heading            // Zentrale Text-Styles
-AppSpacing.md                    // Zentrale Spacing-Werte
-AppRadius.borderRadiusMd         // Zentrale Radien
-AppShadows.sm                    // Zentrale Schatten
+colorScheme.onSurface            // Contrast color
+AppTextStyles.heading            // Centralized text styles
+AppSpacing.md                    // Centralized spacing values
+AppRadius.borderRadiusMd         // Centralized radii
+AppShadows.sm                    // Centralized shadows
 ```
 
-### Custom-Farben über Extensions
+### Custom Colors via Extensions
 
 ```dart
-// Für produktspezifische Farben (income-grün, expense-rot):
+// For product-specific colors (income green, expense red):
 extension AppColorExtension on ColorScheme {
   Color get income => brightness == Brightness.light
       ? const Color(0xFF2E7D32)
@@ -287,56 +287,56 @@ extension AppColorExtension on ColorScheme {
       : const Color(0xFFEF5350);
 }
 
-// Nutzung:
+// Usage:
 Theme.of(context).colorScheme.income
 ```
 
 ### Dark Mode
 
-- **Pflicht**: Jedes Widget MUSS in Light UND Dark Mode korrekt aussehen.
-- **Test**: Bei jedem visuellen Change den anderen Theme-Mode prüfen.
-- **Niemals**: `Brightness.light` hart annehmen. Immer `colorScheme.brightness` prüfen, wenn Theme-abhängige Logik nötig ist.
+- **Required**: Every widget MUST look correct in both Light AND Dark Mode.
+- **Test**: Check the other theme mode with every visual change.
+- **Never**: Hard-assume `Brightness.light`. Always check `colorScheme.brightness` when theme-dependent logic is needed.
 
 ---
 
-## 🟡 REGEL #5: Performance
+## 🟡 RULE #5: Performance
 
-### const ist ansteckend
+### const is Contagious
 
 ```dart
-// ✅ const überall wo möglich:
+// ✅ const everywhere possible:
 const SizedBox(height: 8)
 const EdgeInsets.symmetric(horizontal: 16)
-const Text('Hallo')
+const Text('Hello')
 const Icon(LucideIcons.home)
 ```
 
-**Regel: Wenn der Linter `prefer_const_constructors` vorschlägt — IMMER umsetzen.**
+**Rule: When the linter suggests `prefer_const_constructors` — ALWAYS apply it.**
 
-### Listen-Performance
+### List Performance
 
 ```dart
-// ❌ VERBOTEN bei Listen > 10 Items:
+// ❌ FORBIDDEN for lists > 10 items:
 Column(children: items.map((i) => ItemWidget(i)).toList())
 
-// ✅ PFLICHT — lazy building:
+// ✅ REQUIRED — lazy building:
 ListView.builder(
   itemCount: items.length,
   itemBuilder: (context, index) => ItemWidget(items[index]),
 )
 ```
 
-### Build-Methode schlank halten
+### Keep the Build Method Lean
 
 ```dart
-// ❌ VERBOTEN: Schwere Berechnungen in build()
+// ❌ FORBIDDEN: Heavy computations in build()
 @override
 Widget build(BuildContext context) {
-  final sorted = items..sort((a, b) => a.date.compareTo(b.date)); // ← NEIN!
+  final sorted = items..sort((a, b) => a.date.compareTo(b.date)); // ← NO!
   // ...
 }
 
-// ✅ RICHTIG: In State oder Provider vorberechnen
+// ✅ CORRECT: Pre-compute in State or Provider
 @override
 void didUpdateWidget(old) {
   super.didUpdateWidget(old);
@@ -348,96 +348,96 @@ void didUpdateWidget(old) {
 
 ---
 
-## 🟡 REGEL #6: Internationalisierung (i18n)
+## 🟡 RULE #6: Internationalization (i18n)
 
-### Kein hardcodierter Text
+### No Hardcoded Text
 
 ```dart
-// ❌ VERBOTEN:
+// ❌ FORBIDDEN:
 Text('Einnahmen')
 Text('Verfügbar')
 '€ $amount'
 
-// ✅ PFLICHT:
+// ✅ REQUIRED:
 Text(AppLocalizations.of(context).income)
 Text(l10n.available)
 CurrencyFormatter.format(amount, currency)
 ```
 
-**Jeder neue User-facing String → in `app_de.arb` UND `app_en.arb` eintragen.**
+**Every new user-facing string → add to both `app_de.arb` AND `app_en.arb`.**
 
-### ARB-Konventionen
+### ARB Conventions
 
-- Keys: camelCase, beschreibend (`savingsGoalTitle`, nicht `title1`)
-- Plurals: ICU-Syntax (`{count, plural, one{1 Eintrag} other{{count} Einträge}}`)
-- Placeholders immer mit Typ-Annotation dokumentieren
+- Keys: camelCase, descriptive (`savingsGoalTitle`, not `title1`)
+- Plurals: ICU syntax (`{count, plural, one{1 entry} other{{count} entries}}`)
+- Always document placeholders with type annotations
 
 ---
 
-## 🟡 REGEL #7: Navigation & Routing
+## 🟡 RULE #7: Navigation & Routing
 
-### GoRouter-Regeln
+### GoRouter Rules
 
 ```dart
-// Modale Overlays (Forms, Details):
+// Modal overlays (forms, details):
 // → parentNavigatorKey: _rootNavigatorKey
-// → Damit sie ÜBER der Shell (inkl. Bottom-Nav + FAB) erscheinen
+// → So they appear ABOVE the shell (incl. Bottom-Nav + FAB)
 
-// Tab-interne Navigation:
-// → Kein parentNavigatorKey (bleibt in der Branch)
+// Tab-internal navigation:
+// → No parentNavigatorKey (stays in the branch)
 
-// Navigation von innerhalb einer Shell-Branch zum Root:
-// → appRouter.push() statt context.push()
-// → Garantiert Root-Navigator-Kontext
+// Navigation from within a shell branch to root:
+// → appRouter.push() instead of context.push()
+// → Guarantees root navigator context
 ```
 
 ### Transitions
 
 ```dart
-// Modale Bottom-Sheets: SlideTransition von unten, easeOutCubic
-// Settings/Detail-Screens: SlideTransition von rechts
-// Tab-Wechsel: Kein Übergang (instant)
-// Destruktive Aktionen: Bestätigungsdialog vor Navigation
+// Modal bottom sheets: SlideTransition from bottom, easeOutCubic
+// Settings/detail screens: SlideTransition from right
+// Tab switches: No transition (instant)
+// Destructive actions: Confirmation dialog before navigation
 ```
 
 ---
 
-## 🟢 REGEL #8: Testing
+## 🟢 RULE #8: Testing
 
-### Pflicht-Tests
+### Required Tests
 
-| Was | Typ | Priorität |
-|-----|-----|-----------|
-| Simulationsengine | Unit | 🔴 Höchste |
+| What | Type | Priority |
+|------|------|----------|
+| Simulation engine | Unit | 🔴 Highest |
 | CurrencyFormatter | Unit | 🔴 |
 | Repositories | Unit | 🟡 |
-| Wiederverwendbare Widgets | Widget | 🟡 |
-| Screen-Smoke-Tests | Widget | 🟢 |
-| User-Flows | Integration | 🟢 |
+| Reusable widgets | Widget | 🟡 |
+| Screen smoke tests | Widget | 🟢 |
+| User flows | Integration | 🟢 |
 
-### Test-Konventionen
+### Test Conventions
 
 ```dart
-// Datei: lib/core/utils/x.dart → test/core/utils/x_test.dart
-// Mocking: mocktail (NICHT mockito)
-// Testdaten: test/fixtures/test_data.dart (shared)
-// Jeder Test eigenständig lauffähig
+// File: lib/core/utils/x.dart → test/core/utils/x_test.dart
+// Mocking: mocktail (NOT mockito)
+// Test data: test/fixtures/test_data.dart (shared)
+// Every test must be independently runnable
 ```
 
 ---
 
-## 🟢 REGEL #9: Accessibility
+## 🟢 RULE #9: Accessibility
 
-- **Semantics**: Jedes interaktive Widget braucht ein Semantics-Label
-- **Kontrast**: Minimum 4.5:1 (WCAG AA)
-- **Touch-Targets**: Minimum 44×44px
-- **Focus-States**: Sichtbar, nie entfernen
-- **Screen-Reader**: App mit TalkBack/VoiceOver testen
-- **Keyboard**: Custom-Controls müssen per Tab/Fokus erreichbar und per Enter/Space aktivierbar sein
-- **Mouse**: Hover- und Overflow-Verhalten müssen bei Desktop-/Web-Nutzung mitgedacht werden
+- **Semantics**: Every interactive widget needs a Semantics label
+- **Contrast**: Minimum 4.5:1 (WCAG AA)
+- **Touch Targets**: Minimum 44×44px
+- **Focus States**: Visible, never remove
+- **Screen Reader**: Test app with TalkBack/VoiceOver
+- **Keyboard**: Custom controls must be reachable via Tab/focus and activatable via Enter/Space
+- **Mouse**: Hover and overflow behavior must be considered for desktop/web usage
 
 ```dart
-// ✅ Icon-Button mit Semantik:
+// ✅ Icon button with semantics:
 Semantics(
   label: l10n.deleteEntry,
   child: IconButton(
@@ -449,29 +449,29 @@ Semantics(
 
 ---
 
-## 🟢 REGEL #10: Code-Organisation
+## 🟢 RULE #10: Code Organization
 
-### Feature-First-Struktur
+### Feature-First Structure
 
 ```
 lib/
-  core/              — Geteilte Utilities, Theme, l10n, Widgets
-    widgets/         — Wiederverwendbare Widgets (WICHTIGSTER Ordner!)
-    theme/           — Design-Tokens, Farben, Spacing, Typografie
-    l10n/            — Lokalisierung
-    utils/           — Formatter, Helpers
+  core/              — Shared utilities, theme, l10n, widgets
+    widgets/         — Reusable widgets (MOST IMPORTANT folder!)
+    theme/           — Design tokens, colors, spacing, typography
+    l10n/            — Localization
+    utils/           — Formatters, helpers
   features/
     {feature}/
-      models/        — Datenmodelle
-      repositories/  — Datenzugriff
+      models/        — Data models
+      repositories/  — Data access
       providers/     — Riverpod Provider
-      screens/       — Vollständige Screens
-      widgets/       — Feature-spezifische Widgets
-  router/            — GoRouter-Konfiguration
-  database/          — Drift-Datenbankdefinition
+      screens/       — Complete screens
+      widgets/       — Feature-specific widgets
+  router/            — GoRouter configuration
+  database/          — Drift database definition
 ```
 
-### Import-Reihenfolge
+### Import Order
 
 ```dart
 // 1. Dart SDK
@@ -480,28 +480,28 @@ import 'dart:async';
 // 2. Flutter SDK
 import 'package:flutter/material.dart';
 
-// 3. Packages (alphabetisch)
+// 3. Packages (alphabetical)
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-// 4. Projekt-Imports (alphabetisch)
+// 4. Project imports (alphabetical)
 import 'package:hellerio/core/theme/app_spacing.dart';
 import 'package:hellerio/features/planning/models/...';
 ```
 
 ---
 
-## Anwendung dieses Skills
+## Applying This Skill
 
-**Bei JEDER Flutter/Dart-Änderung** prüfe:
+**For EVERY Flutter/Dart change**, check:
 
-1. ✅ Wiederverwendet bestehende Widgets? (Regel #1)
-2. ✅ Gesten intuitiv? (Regel #2)
-3. ✅ State korrekt gemanaged? (Regel #3)
-4. ✅ Keine hardcoded Farben/Strings/Spacing? (Regel #4 + #6)
-5. ✅ const wo möglich? (Regel #5)
-6. ✅ Dark Mode kompatibel? (Regel #4)
-7. ✅ Touch-Targets ≥ 44px? (Regel #9)
-8. ✅ Custom-Controls auch mit Mouse + Keyboard vollständig bedienbar?
+1. ✅ Reuses existing widgets? (Rule #1)
+2. ✅ Gestures intuitive? (Rule #2)
+3. ✅ State correctly managed? (Rule #3)
+4. ✅ No hardcoded colors/strings/spacing? (Rule #4 + #6)
+5. ✅ const where possible? (Rule #5)
+6. ✅ Dark Mode compatible? (Rule #4)
+7. ✅ Touch targets ≥ 44px? (Rule #9)
+8. ✅ Custom controls also fully operable with mouse + keyboard?
 
-**Wenn eine Regel verletzt wird: Behebe es SOFORT, bevor du den Code präsentierst.**
+**If a rule is violated: Fix it IMMEDIATELY before presenting the code.**

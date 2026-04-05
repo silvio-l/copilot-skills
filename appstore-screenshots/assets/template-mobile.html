@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* ─── CSS Custom Properties (injected by generator) ─── */
+  :root {
+    --screen-w: 1320px;
+    --screen-h: 2868px;
+    --num-screens: 7;
+
+    /* Colors (defaults — override in config) */
+    --bg-dark: #0F1A24;
+    --bg-light: #F0F9F5;
+    --accent: #5EEAD4;
+    --accent-glow: rgba(94, 234, 212, 0.12);
+    --text-dark: #E2E8F0;
+    --text-light: #142B3D;
+    --text-muted: rgba(226, 232, 240, 0.5);
+    --text-muted-light: rgba(20, 43, 61, 0.5);
+    --category-color: #5EEAD4;
+
+    /* Phone mockup */
+    --phone-radius: 58px;
+    --bezel-dark: #1a2b3c;
+    --bezel-light: #d1d5db;
+    --shadow-blur: 60px;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+
+    /* Font */
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-family);
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* ─── Panorama Container ─── */
+  .panorama {
+    display: flex;
+    width: calc(var(--screen-w) * var(--num-screens));
+    height: var(--screen-h);
+    position: relative;
+  }
+
+  /* ─── Screen (one slice) ─── */
+  .screen {
+    width: var(--screen-w);
+    height: var(--screen-h);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 120px 80px 100px;
+  }
+
+  /* ─── Background Themes ─── */
+  .bg-dark {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(94, 234, 212, 0.06) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-dark) 0%, color-mix(in srgb, var(--bg-dark), var(--accent) 3%) 100%);
+    color: var(--text-dark);
+  }
+
+  .bg-light {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(94, 234, 212, 0.08) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-light) 0%, color-mix(in srgb, var(--bg-light), var(--accent) 6%) 100%);
+    color: var(--text-light);
+  }
+
+  .bg-dark-accent {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(94, 234, 212, 0.06) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-dark) 0%, color-mix(in srgb, var(--bg-dark), var(--accent) 3%) 100%);
+    color: var(--text-dark);
+  }
+
+  /* ─── Typography ─── */
+  .category {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--category-color);
+    margin-bottom: 24px;
+  }
+
+  .headline {
+    font-size: 82px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.4;
+    max-width: 900px;
+  }
+  .bg-dark .subtitle { color: var(--text-muted); }
+  .bg-light .subtitle { color: var(--text-muted-light); }
+
+  /* ─── Hero Screen (Screen 0) ─── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding-top: 200px;
+  }
+
+  .hero-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 60px;
+  }
+
+  .hero-content .headline {
+    font-size: 110px;
+    text-align: center;
+  }
+
+  .hero-content .subtitle {
+    text-align: center;
+    max-width: 1000px;
+  }
+
+  /* ─── Badges ─── */
+  .badges {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .badge {
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    background: rgba(94, 234, 212, 0.10);
+    color: var(--accent);
+    border: 1.5px solid rgba(94, 234, 212, 0.15);
+    white-space: nowrap;
+  }
+
+  /* ─── Mascot ─── */
+  .hero-mascot {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+    width: 340px;
+    height: auto;
+    opacity: 0.95;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+
+  /* ─── Phone Mockup ─── */
+  .phone {
+    position: absolute;
+    border-radius: var(--phone-radius);
+    background: var(--bezel-dark);
+    box-shadow:
+      0 var(--shadow-blur) calc(var(--shadow-blur) * 2) var(--shadow-color),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    overflow: hidden;
+    padding: 12px;
+  }
+
+  .phone.on-light {
+    background: var(--bezel-light);
+    box-shadow:
+      0 var(--shadow-blur) calc(var(--shadow-blur) * 2) rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .phone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--phone-radius) - 12px);
+    display: block;
+  }
+
+  /* ─── Trust Screen (Last Screen) ─── */
+  .trust-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+  }
+
+  .trust-list {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-top: 60px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 34px;
+    font-weight: 600;
+  }
+
+  .trust-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--accent-glow);
+    border: 1.5px solid rgba(94, 234, 212, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .trust-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .trust-mascot {
+    position: absolute;
+    bottom: 80px;
+    left: 80px;
+    width: 300px;
+    opacity: 0.9;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+
+  /* ─── Mascot Watermark (spans first few screens) ─── */
+  .mascot-watermark {
+    position: absolute;
+    top: 600px;
+    left: 200px;
+    width: 2400px;
+    height: auto;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(1px);
+  }
+</style>
+</head>
+<body>
+
+<div class="panorama" id="panorama">
+  <!-- Mascot watermark spanning first screens -->
+  <img id="mascot-watermark" class="mascot-watermark" src="" alt="">
+
+  <!-- Screen 0: Hero -->
+  <div class="screen bg-dark" id="screen-0">
+    <div class="hero-content">
+      <img id="hero-logo" class="hero-logo" src="" alt="Logo">
+      <div class="category" id="cat-0"></div>
+      <h1 class="headline" id="hl-0"></h1>
+      <p class="subtitle" id="sub-0"></p>
+      <div class="badges" id="badges-0"></div>
+    </div>
+    <img id="hero-mascot" class="hero-mascot" src="" alt="">
+  </div>
+
+  <!-- Screen 1: Feature -->
+  <div class="screen bg-dark" id="screen-1">
+    <div class="category" id="cat-1"></div>
+    <h2 class="headline" id="hl-1"></h2>
+    <p class="subtitle" id="sub-1"></p>
+  </div>
+
+  <!-- Screen 2: Feature (light variant) -->
+  <div class="screen bg-light" id="screen-2">
+    <div class="category" id="cat-2"></div>
+    <h2 class="headline" id="hl-2"></h2>
+    <p class="subtitle" id="sub-2"></p>
+  </div>
+
+  <!-- Screen 3: Feature -->
+  <div class="screen bg-dark-accent" id="screen-3">
+    <div class="category" id="cat-3"></div>
+    <h2 class="headline" id="hl-3"></h2>
+    <p class="subtitle" id="sub-3"></p>
+  </div>
+
+  <!-- Screen 4: Feature -->
+  <div class="screen bg-dark" id="screen-4">
+    <div class="category" id="cat-4"></div>
+    <h2 class="headline" id="hl-4"></h2>
+    <p class="subtitle" id="sub-4"></p>
+  </div>
+
+  <!-- Screen 5: Feature (detail) -->
+  <div class="screen bg-dark" id="screen-5">
+    <div class="category" id="cat-5"></div>
+    <h2 class="headline" id="hl-5"></h2>
+    <p class="subtitle" id="sub-5"></p>
+  </div>
+
+  <!-- Screen 6: Trust / Closing -->
+  <div class="screen bg-dark" id="screen-6">
+    <div class="trust-content">
+      <div class="category" id="cat-6"></div>
+      <h2 class="headline" id="hl-6"></h2>
+      <p class="subtitle" id="sub-6"></p>
+      <div class="trust-list" id="trust-list"></div>
+    </div>
+    <img id="trust-mascot" class="trust-mascot" src="" alt="">
+  </div>
+
+  <!-- Phone mockups (positioned absolutely across panorama) -->
+  <div id="phone-1" class="phone" style="left:1320px; top:680px; width:920px; height:2000px; transform:rotate(6deg); z-index:10;">
+    <img id="phone-1-img" src="" alt="">
+  </div>
+  <div id="phone-2" class="phone on-light" style="left:2840px; top:640px; width:920px; height:2000px; z-index:10;">
+    <img id="phone-2-img" src="" alt="">
+  </div>
+  <div id="phone-3" class="phone" style="left:4160px; top:660px; width:920px; height:2000px; transform:rotate(-3deg); z-index:10;">
+    <img id="phone-3-img" src="" alt="">
+  </div>
+  <div id="phone-4" class="phone" style="left:5480px; top:640px; width:920px; height:2000px; z-index:10;">
+    <img id="phone-4-img" src="" alt="">
+  </div>
+  <div id="phone-5" class="phone" style="left:6900px; top:680px; width:920px; height:2000px; transform:rotate(5deg); z-index:10;">
+    <img id="phone-5-img" src="" alt="">
+  </div>
+</div>
+
+</body>
+</html>

@@ -127,12 +127,24 @@ Prioritize:
 
 Always identify:
 
-- who the new user is
+- who the new user is (personas)
 - what job they are trying to get done
 - the earliest credible "aha" or value moment
 - the next milestone after activation
+- the **emotional hook** that creates first-impression trust
 
 If the user does not provide this, infer a reasonable assumption and say so.
+
+### 1b. Design the aha moment INSIDE the onboarding
+
+The aha moment must happen during the onboarding wizard, not after it.
+
+Best practice references:
+- Duolingo: first lesson during onboarding
+- Canva: first design during onboarding
+- Basecamp: sample project interaction during onboarding
+
+For every product, ask: "Can the user DO the core thing as part of onboarding?" If yes, make it a step. If not, simulate it with preview/sample data.
 
 ### 2. Map the onboarding surface
 
@@ -232,6 +244,13 @@ Raise issues when you see:
 - unclear CTA labels
 - no measurement plan
 - treating onboarding completion as success while activation is undefined
+- **no emotional hook on step 1** (generic "Welcome" without value proposition)
+- **no aha moment inside the onboarding** (user just configures, never experiences value)
+- **no persona question** when user base is diverse
+- **no micro-celebrations** at key milestones (completion feels flat)
+- **no secondary onboarding system** (features beyond primary flow have no discovery path)
+- **no progress indicators** (user doesn't know how many steps remain)
+- **more than 5 steps** in primary onboarding (benchmark: 72% at 3 steps, 16% at 7 steps)
 
 ## Platform-specific guidance
 

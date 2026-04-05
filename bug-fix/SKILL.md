@@ -23,6 +23,51 @@ Before entering the full workflow, classify the bug:
 
 ---
 
+## Phase 0 — Gather Telemetry (always, before Phase 1)
+
+Before analyzing code, **always** check available telemetry sources. These provide ground-truth evidence that code analysis alone cannot.
+
+### 0a. Sentry / Error Tracking
+
+If Sentry MCP tools are available (check for `sentry-*` tools):
+
+1. **Search for the issue** — use `sentry-search_issues` with the error message or symptom description
+2. **Get issue details** — use `sentry-get_sentry_resource` with the issue ID/URL for full stack trace, tags, breadcrumbs
+3. **Check tag distribution** — use `sentry-get_issue_tag_values` to understand scope (affected browsers, OS, environments, releases)
+4. **Check event timeline** — use `sentry-search_events` to see when the error started and frequency
+5. **Get breadcrumbs** — use `sentry-get_sentry_resource` with `resourceType: 'breadcrumbs'` for the chain of events leading to the crash
+6. **Run Seer analysis** — if root cause is unclear after code analysis, use `sentry-analyze_issue_with_seer` for AI-powered root cause analysis
+
+**Sentry provides:**
+- Exact exception type, message, and error code
+- Full stack trace with in-app frame highlighting
+- Tags: OS, device, environment, release, user count
+- Breadcrumbs: navigation events, HTTP requests, console logs leading up to the error
+- Event frequency and first/last seen timestamps
+- Affected user count and scope
+
+**If the user provides a Sentry URL or issue ID, ALWAYS fetch it first.**
+
+### 0b. Local Log Files
+
+Check for log files in the project:
+1. Search for log file sinks: `grep -r "FileOutput\|FileSink\|log.*file\|writeAsString.*log" lib/`
+2. Check common log locations: `%APPDATA%`, `%LOCALAPPDATA%`, `%TEMP%`, app-specific paths
+3. If `AppLogger` or similar exists, trace where output goes (console only? file? remote?)
+
+**If logs are console-only** (e.g., `developer.log`): Note this as a limitation. Consider recommending persistent logging for production if the bug would benefit from it.
+
+### 0c. Application Monitoring Config
+
+Quickly assess monitoring coverage:
+1. Check Sentry config: DSN set? Sample rate? Environment tagging? Breadcrumb levels?
+2. Check if navigation observer is attached (SentryNavigatorObserver)
+3. Check if error boundaries capture exceptions (FlutterError.onError, PlatformDispatcher.onError)
+
+**Document any telemetry gaps** that made diagnosis harder — suggest improvements in Phase 5.
+
+---
+
 ## Phase 1 — Understand (never skip)
 
 ### 1a. Symptom Capture
@@ -32,6 +77,7 @@ Document precisely:
 - **Actual behavior**: What happens instead? (exact error messages, screenshots, logs)
 - **Reproduction conditions**: When does it happen? Always? Sometimes? Under what conditions?
 - **Impact**: Who/what is affected? How severely? Is there a workaround?
+- **Telemetry evidence**: What did Sentry/logs reveal? (reference specific issue IDs, event counts, breadcrumb chains)
 
 If the user's report is vague, use `ask_user` to fill gaps. Do not proceed with assumptions.
 
@@ -59,6 +105,8 @@ git show {suspect_commit} -- {affected_files}
 
 This often reveals the root cause directly. A bug that appeared after commit X was likely introduced by commit X.
 
+**Cross-reference with Sentry:** Compare the "First seen" timestamp from Sentry with the commit timeline to narrow down the introducing commit.
+
 ### 1d. Impact Assessment
 
 | Dimension | Assessment |
@@ -69,6 +117,8 @@ This often reveals the root cause directly. A bug that appeared after commit X w
 | **Data impact** | None / Read-only / Data corruption risk |
 | **Urgency** | Immediate / Next release / Backlog |
 
+Use Sentry tag distributions (OS, browser, environment) to quantify scope and frequency.
+
 ---
 
 ## Phase 2 — Diagnose
@@ -76,10 +126,11 @@ This often reveals the root cause directly. A bug that appeared after commit X w
 ### 2a. Narrow Down
 
 Use at least 2 search strategies to find relevant code:
-1. Trace from the error message / stack trace backward
+1. Trace from the error message / stack trace backward (Sentry stack trace is authoritative)
 2. Search for the function/module mentioned in the bug
 3. Check callers and dependencies of the affected code
 4. Review recent changes (from 1c)
+5. Check Sentry breadcrumbs for the sequence of events preceding the error
 
 ### 2b. Form Hypotheses
 
@@ -106,6 +157,7 @@ Verification methods (use at least one):
 - Show the specific line(s) where the defect occurs
 - Demonstrate with a test or execution that the hypothesized cause produces the observed symptom
 - Show via git blame/log that a change introduced the behavior
+- Correlate Sentry event data (tags, breadcrumbs, context) with the code path
 
 ### 2d. Root Cause Statement
 
@@ -180,6 +232,7 @@ Present to the user:
 
 **Severity**: Trivial / Standard / Complex
 **Impact**: {severity} | {scope} | {frequency}
+**Sentry**: {issue ID + link, or "No Sentry data available"}
 
 ### Root Cause
 {One clear sentence from 2d}
@@ -194,6 +247,9 @@ Present to the user:
 - [x] Fix verified: {how}
 - [x] No regressions: {how}
 - [ ] Regression test added (Complex only)
+
+### Telemetry Gaps
+{Any monitoring/logging improvements needed, or "Coverage adequate."}
 
 ### Residual Risks
 {Any remaining concerns, or "None identified."}
@@ -211,3 +267,5 @@ Present to the user:
 6. **Reproduce first when possible.** A bug you can reproduce is a bug you can verify. Invest in reproduction before analysis.
 7. **Check the history.** Bugs rarely appear from nowhere. Recent changes are the most common cause. Always check git log for the affected area.
 8. **Test what you fix.** If test infrastructure exists, a fix without a test is incomplete. The test proves the fix works and prevents regression.
+9. **Check telemetry first.** Always query Sentry/logs before diving into code. Telemetry provides ground-truth evidence (exact errors, stack traces, user impact) that code reading alone cannot.
+10. **Document telemetry gaps.** If monitoring was insufficient to diagnose the bug, recommend specific improvements (breadcrumb levels, additional error context, persistent logging).

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --screen-w: 1920px;
+    --screen-h: 1080px;
+    --num-screens: 5;
+
+    /* Colors (defaults — override in config) */
+    --bg-dark: #0F1A24;
+    --bg-light: #F0F9F5;
+    --accent: #5EEAD4;
+    --accent-glow: rgba(94, 234, 212, 0.12);
+    --text-dark: #E2E8F0;
+    --text-light: #142B3D;
+    --text-muted: rgba(226, 232, 240, 0.5);
+    --text-muted-light: rgba(20, 43, 61, 0.5);
+    --category-color: #5EEAD4;
+
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-family);
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* ─── Panorama Container ─── */
+  .panorama {
+    display: flex;
+    width: calc(var(--screen-w) * var(--num-screens));
+    height: var(--screen-h);
+  }
+
+  /* ─── Screen (one slice) ─── */
+  .screen {
+    width: var(--screen-w);
+    height: var(--screen-h);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ─── Background Themes ─── */
+  .bg-dark {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 50%, rgba(94, 234, 212, 0.05) 0%, transparent 60%),
+      linear-gradient(135deg, var(--bg-dark) 0%, color-mix(in srgb, var(--bg-dark), var(--accent) 3%) 100%);
+    color: var(--text-dark);
+  }
+
+  .bg-light {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 50%, rgba(94, 234, 212, 0.06) 0%, transparent 60%),
+      linear-gradient(135deg, var(--bg-light) 0%, color-mix(in srgb, var(--bg-light), var(--accent) 5%) 100%);
+    color: var(--text-light);
+  }
+
+  .bg-dark-accent {
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 40%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 30% 50%, rgba(94, 234, 212, 0.05) 0%, transparent 60%),
+      linear-gradient(135deg, var(--bg-dark) 0%, color-mix(in srgb, var(--bg-dark), var(--accent) 3%) 100%);
+    color: var(--text-dark);
+  }
+
+  /* ─── Two-Column Layout ─── */
+  .screen-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  .text-side {
+    width: 42%;
+    padding: 60px 50px 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .device-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+
+  /* ─── Typography ─── */
+  .category {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--category-color);
+    margin-bottom: 16px;
+  }
+
+  .headline {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .bg-dark .subtitle { color: var(--text-muted); }
+  .bg-light .subtitle { color: var(--text-muted-light); }
+
+  /* ─── Desktop Window Mockup ─── */
+  .desktop-window {
+    width: 880px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    background: #1e293b;
+  }
+
+  .desktop-titlebar {
+    height: 36px;
+    background: #1e293b;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  .desktop-titlebar .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #eab308; }
+  .dot-green { background: #22c55e; }
+
+  .desktop-content {
+    width: 100%;
+    aspect-ratio: 16/10;
+  }
+
+  .desktop-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─── Phone Teaser ─── */
+  .phone-teaser {
+    position: absolute;
+    right: 20px;
+    bottom: 60px;
+    width: 160px;
+    height: 346px;
+    border-radius: 24px;
+    background: #1a2b3c;
+    padding: 6px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    transform: rotate(3deg);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .phone-teaser img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+  }
+
+  /* ─── Hero Screen (centered layout) ─── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 32px;
+  }
+
+  .hero-content .headline {
+    font-size: 56px;
+    text-align: center;
+  }
+
+  .hero-content .subtitle {
+    text-align: center;
+    max-width: 700px;
+  }
+
+  /* ─── Badges ─── */
+  .badges {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .badge {
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    background: rgba(94, 234, 212, 0.10);
+    color: var(--accent);
+    border: 1.5px solid rgba(94, 234, 212, 0.15);
+    white-space: nowrap;
+  }
+
+  /* ─── Mascot ─── */
+  .hero-mascot {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    width: 180px;
+    opacity: 0.9;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.3));
+  }
+
+  /* ─── Trust Screen ─── */
+  .trust-content .text-side {
+    width: 55%;
+  }
+
+  .trust-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .trust-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(94, 234, 212, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .trust-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .trust-mascot {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    width: 200px;
+    opacity: 0.85;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.3));
+  }
+
+  /* ─── Desktop Hint Badge ─── */
+  .desktop-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(94, 234, 212, 0.06);
+    border: 1px solid rgba(94, 234, 212, 0.10);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    width: fit-content;
+  }
+</style>
+</head>
+<body>
+
+<div class="panorama" id="panorama">
+
+  <!-- Screen 0: Hero -->
+  <div class="screen bg-dark" id="screen-0">
+    <div class="hero-content">
+      <img id="hero-logo" class="hero-logo" src="" alt="Logo">
+      <div class="category" id="cat-0"></div>
+      <h1 class="headline" id="hl-0"></h1>
+      <p class="subtitle" id="sub-0"></p>
+      <div class="badges" id="badges-0"></div>
+    </div>
+    <img id="hero-mascot" class="hero-mascot" src="" alt="">
+  </div>
+
+  <!-- Screen 1: Feature with Desktop + Phone -->
+  <div class="screen bg-dark" id="screen-1">
+    <div class="screen-content">
+      <div class="text-side">
+        <div class="category" id="cat-1"></div>
+        <h2 class="headline" id="hl-1"></h2>
+        <p class="subtitle" id="sub-1"></p>
+        <div class="desktop-hint">🖥️ Also on Desktop</div>
+      </div>
+      <div class="device-side">
+        <div class="desktop-window">
+          <div class="desktop-titlebar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="desktop-content">
+            <img id="desktop-1" src="" alt="">
+          </div>
+        </div>
+        <div class="phone-teaser">
+          <img id="phone-teaser-1" src="" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Feature (light) -->
+  <div class="screen bg-light" id="screen-2">
+    <div class="screen-content">
+      <div class="text-side">
+        <div class="category" id="cat-2"></div>
+        <h2 class="headline" id="hl-2"></h2>
+        <p class="subtitle" id="sub-2"></p>
+        <div class="desktop-hint">🖥️ Also on Desktop</div>
+      </div>
+      <div class="device-side">
+        <div class="desktop-window">
+          <div class="desktop-titlebar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="desktop-content">
+            <img id="desktop-2" src="" alt="">
+          </div>
+        </div>
+        <div class="phone-teaser">
+          <img id="phone-teaser-2" src="" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Feature -->
+  <div class="screen bg-dark-accent" id="screen-3">
+    <div class="screen-content">
+      <div class="text-side">
+        <div class="category" id="cat-3"></div>
+        <h2 class="headline" id="hl-3"></h2>
+        <p class="subtitle" id="sub-3"></p>
+        <div class="desktop-hint">🖥️ Also on Desktop</div>
+      </div>
+      <div class="device-side">
+        <div class="desktop-window">
+          <div class="desktop-titlebar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="desktop-content">
+            <img id="desktop-3" src="" alt="">
+          </div>
+        </div>
+        <div class="phone-teaser">
+          <img id="phone-teaser-3" src="" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Trust / Closing -->
+  <div class="screen bg-dark" id="screen-4">
+    <div class="screen-content trust-content">
+      <div class="text-side">
+        <div class="category" id="cat-4"></div>
+        <h2 class="headline" id="hl-4"></h2>
+        <p class="subtitle" id="sub-4"></p>
+        <div class="trust-list" id="trust-list"></div>
+      </div>
+      <div class="device-side">
+        <img id="trust-mascot" class="trust-mascot" src="" alt="">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

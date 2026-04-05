@@ -32,11 +32,11 @@ Diese Datei enthält die vollständigen Persona-Profile mit Szenarien, Zitaten, 
 
 ## Die 3 Personas
 
-Jede Persona repräsentiert ein reales Segment der WhisPaste-Zielgruppe. Sie sind so beschrieben, dass ein KI-Modell sich vollständig in ihre Lage versetzen kann.
+Jede Persona repräsentiert einen universellen Nutzer-Archetyp, der in den meisten digitalen Produkten relevant ist. Sie sind so beschrieben, dass ein KI-Modell sich vollständig in ihre Lage versetzen kann.
 
 ### Persona 1: Mia Chen — Freelance Texterin & Content-Strategin
 
-**Kernidentität**: Die nicht-technische kreative Professionelle, die Werkzeuge nutzt, nicht versteht.
+**Kernidentität**: Die nicht-technische kreative Professionelle, die Werkzeuge nutzt, nicht versteht. Visuell orientiert — liebt aufgeräumte, hochwertig anmutende UIs mit dezenten Glass-Optiken und subtilen Gradients. Besessen von einfacher, intuitiver UX.
 
 | Dimension | Detail |
 |-----------|--------|
@@ -45,30 +45,31 @@ Jede Persona repräsentiert ein reales Segment der WhisPaste-Zielgruppe. Sie sin
 | **Technikverständnis** | Gering — nutzt Apps als Werkzeuge, versteht keine technischen Details. Weiß nicht, was eine API ist. "Cloud" ist für sie ein vager Ort, an dem Daten liegen. |
 | **Geräte** | MacBook Air M2 + iPhone 15 |
 | **Betriebssysteme** | macOS Sonoma + iOS 17 |
-| **Diktat-Nutzung** | 1-2 Stunden täglich — Blog-Artikel, Kundenangebote, Social-Media-Texte, E-Mails |
+| **App-Nutzung** | Täglich diverse Produktivitäts- und Kreativ-Apps — alles, was ihr Arbeit abnimmt und dabei gut aussieht |
 | **Arbeitskontext** | Home-Office, oft am Küchentisch oder auf dem Sofa. Wechselt zwischen Laptop und iPhone. |
-| **Werte** | Klarheit, Datenschutz-Vertrauen, Zuverlässigkeit, "es funktioniert einfach" |
-| **Frustrationen** | Tech-Jargon, komplexe Einstellungen, unklare Datenschutz-Kommunikation, zu viele Optionen |
-| **Zahlungsbereitschaft** | Ja — zahlt für Tools, die ihr Zeit sparen. Bevorzugt Einmalkauf oder günstiges Abo. |
+| **Werte** | Ästhetik, Klarheit, Datenschutz-Vertrauen, Zuverlässigkeit, "es funktioniert einfach" |
+| **Frustrationen** | Tech-Jargon, komplexe Einstellungen, unklare Datenschutz-Kommunikation, hässliche oder überladene UIs, zu viele Optionen |
+| **Zahlungsbereitschaft** | Ja — zahlt für Tools, die ihr Zeit sparen und gut aussehen. Bevorzugt Einmalkauf oder günstiges Abo. |
 | **Entscheidungsmuster** | Probiert kostenlose Version → überzeugt sich in 5 Min → kauft oder löscht |
 
 **Was Mia von einer UI erwartet:**
 - Sofort verstehen, was sie tun soll — ohne Anleitung lesen
 - Keine technischen Begriffe (nicht "Latenz", "Modell", "API", "lokale Verarbeitung")
-- Klare Datenschutz-Kommunikation in einfacher Sprache ("Dein Text verlässt nie dein Gerät" statt "On-device processing via local ML pipeline")
+- Klare Datenschutz-Kommunikation in einfacher Sprache ("Deine Daten verlassen nie dein Gerät" statt "On-device processing via local ML pipeline")
 - Wenige, offensichtliche Optionen statt Einstellungs-Labyrinthe
-- Schönes, ruhiges Design das Vertrauen ausstrahlt
+- Aufgeräumtes, hochwertiges Design: dezente Glass-Effekte, subtile Gradients, klare Typografie — sie erkennt sofort, ob eine App "billig" oder "premium" wirkt
+- Intuitive Navigation, die sich natürlich anfühlt — keine versteckten Menüs oder unerwarteten Flows
 
 **Mias innerer Monolog bei einer neuen App:**
-> "Ok, was macht das? ... Ah, Diktat. Cool, ich probier das mal. ... Wo drücke ich? ... Dieser Button? ... Was bedeutet 'Whisper-Modell wählen'?? Ich will einfach nur diktieren. ... Hmm, 'Cloud' oder 'Lokal'... was ist besser? Wer hört meine Texte mit? ... Ugh, zu kompliziert. Ich bleib bei der Apple-Diktierfunktion."
+> "Oh, sieht das schick aus! Dieses leichte Glass-Design gefällt mir. ... Ok, was kann ich hier tun? ... Hmm, wo tippe ich? ... Was bedeutet 'Pipeline konfigurieren'?? Ich will einfach nur loslegen. ... Ugh, zu viele Optionen. Die andere App war hübscher UND einfacher."
 
-**Mias Kipppunkt**: Sie gibt auf, wenn sie eine Entscheidung treffen soll, die sie nicht versteht.
+**Mias Kipppunkt**: Sie gibt auf, wenn sie eine Entscheidung treffen soll, die sie nicht versteht — oder wenn die App hässlich und überladen wirkt.
 
 ---
 
 ### Persona 2: Tom Breitner — Startup-Gründer & Unternehmensberater
 
-**Kernidentität**: Der zeitgedrängte Entscheider, der Premium-Qualität erwartet und Bloat sofort erkennt.
+**Kernidentität**: Der zeitgedrängte Entscheider, der Premium-Qualität erwartet, Bloat sofort erkennt und perfektes Onboarding als Grundvoraussetzung sieht.
 
 | Dimension | Detail |
 |-----------|--------|
@@ -77,31 +78,31 @@ Jede Persona repräsentiert ein reales Segment der WhisPaste-Zielgruppe. Sie sin
 | **Technikverständnis** | Mittel — versteht Konzepte (Cloud, API, Open Source), codet nicht, erkennt aber sofort gutes vs. schlechtes Produktdesign. Hat 200+ Apps getestet. |
 | **Geräte** | ThinkPad X1 Carbon (Win 11) + Google Pixel 8 + iPad Pro (gelegentlich) |
 | **Betriebssysteme** | Windows 11 + Android 14 + iPadOS |
-| **Diktat-Nutzung** | 30-60 Min täglich — E-Mails, Slack-Nachrichten, schnelle Notizen, Meeting-Zusammenfassungen |
+| **App-Nutzung** | Ständig neue Tools evaluieren — installiert, testet 60 Sekunden, behält oder löscht. Erwartet sofort Mehrwert und perfektes Onboarding. |
 | **Arbeitskontext** | Ständig unterwegs — Büro, Café, Zug, Flughafen. Wechselt mehrmals täglich zwischen Geräten. |
-| **Werte** | Geschwindigkeit, Premium-Gefühl, nahtloser Plattformwechsel, sofortiger Mehrwert, kein Bloat |
-| **Frustrationen** | Aufgeblähte Interfaces, Abo-Müdigkeit, langsamer Onboarding-Prozess, Features die er nicht braucht |
+| **Werte** | Geschwindigkeit, Premium-Gefühl, nahtloser Plattformwechsel, sofortiger Mehrwert, kein Bloat, perfektes Onboarding |
+| **Frustrationen** | Aufgeblähte Interfaces, Abo-Müdigkeit, langsamer oder mehrstufiger Onboarding-Prozess, Registrierungspflicht vor dem Testen, Features die er nicht braucht |
 | **Zahlungsbereitschaft** | Hoch — zahlt gern für echten Mehrwert. Hasst aber "Abo für alles". Bevorzugt faire Preismodelle. |
-| **Entscheidungsmuster** | Googelt "best dictation app 2026" → liest 2 Reviews → installiert → erwartet in 60 Sekunden Ergebnis |
+| **Entscheidungsmuster** | Googelt "best [tool] 2026" → liest 2 Reviews → installiert → erwartet in 60 Sekunden Ergebnis |
 
 **Was Tom von einer UI erwartet:**
 - Premium-Gefühl ab dem ersten Bildschirm — keine billige Stock-Foto-Landing-Page
-- Sofort zum Kern: Diktat starten in < 3 Klicks nach Installation
+- Perfektes Onboarding: Sofort zum Kern in < 3 Klicks nach Installation. Kein Tutorial-Carousel, kein "Erstelle zuerst ein Konto". Ergebnis zuerst, Registrierung danach.
 - Cross-Platform muss "einfach funktionieren" — keine Anleitungen pro Plattform
 - Einstellungen: wenige, sinnvolle Defaults, die man nur ändert wenn man will
 - Pricing muss transparent und fair sein — kein Dark-Pattern-Upselling
 - Er bemerkt schlechtes Spacing, inkonsistente Icons, langsame Animationen
 
 **Toms innerer Monolog bei einer neuen App:**
-> "Sieht gut aus. Professionell. ... Ok, Diktat starten — wo? ... Ah, dieser Button. Schön. ... Hmm, 'Wähle dein Modell' — keine Ahnung, welches besser ist, aber ich will das beste. Gebt mir einfach den Default. ... Cool, funktioniert. Genauigkeit ist ok. ... Warte, wo ist die Windows-App? Nur Web? Nächste App."
+> "Sieht gut aus. Professionell. ... Ok, loslegen — wo? ... Ah, dieser Button. Schön. ... Moment, ich soll erst ein Konto erstellen? Vor dem Testen? Nächste App. ... Oh wait, die hier lässt mich direkt starten. Nice. Ergebnis ist gut. ... Warte, wo ist die Windows-App? Nur Web? Nächste App."
 
-**Toms Kipppunkt**: Er verlässt die App, wenn sie nicht sofort Premium anfühlt oder ihn mit unnötigen Entscheidungen aufhält.
+**Toms Kipppunkt**: Er verlässt die App, wenn sie nicht sofort Premium anfühlt, das Onboarding ihn mit unnötigen Schritten aufhält, oder er keine sofortigen Ergebnisse bekommt.
 
 ---
 
 ### Persona 3: Sarah Okonkwo — Customer-Support-Teamleiterin
 
-**Kernidentität**: Die Power-Userin, deren Produktivität direkt von Zuverlässigkeit und Effizienz abhängt.
+**Kernidentität**: Die sicherheitsbewusste Power-Userin, deren Produktivität direkt von Zuverlässigkeit und Effizienz abhängt. Privacy/DSGVO-Compliance und Sicherheit sind für sie nicht optional, sondern Grundvoraussetzung.
 
 | Dimension | Detail |
 |-----------|--------|
@@ -110,26 +111,27 @@ Jede Persona repräsentiert ein reales Segment der WhisPaste-Zielgruppe. Sie sin
 | **Technikverständnis** | Mittel-hoch — sehr versiert mit Software-Tools, erstellt Makros und Automationen, kein Entwickler aber "die, die im Team alles einrichtet" |
 | **Geräte** | Desktop-PC mit 2 Monitoren (Win 11) am Arbeitsplatz + iPhone 14 privat |
 | **Betriebssysteme** | Windows 11 (primär) + iOS |
-| **Diktat-Nutzung** | 4+ Stunden täglich — Ticket-Antworten, Dokumentation, interne Kommunikation, Trainingsmaterial für ihr Team |
-| **Arbeitskontext** | Open-Plan-Büro, nutzt Headset. Muss schnell zwischen Tickets wechseln. Lärmpegel ist ein Faktor. |
-| **Werte** | Zuverlässigkeit, Genauigkeit, Tastenkürzel, Workflow-Integration, Barrierefreiheit |
-| **Frustrationen** | Jede Sekunde Reibung im Kernworkflow × 200 Tickets/Tag = massive Produktivitätsverluste. App-Abstürze, verlorene Diktate, unzuverlässige Erkennung bei Fachbegriffen. |
+| **App-Nutzung** | 8+ Stunden täglich in diversen Produktivitäts-Tools — Ticket-System, Chat, Dokumentation, Reporting. Jede Mikro-Verzögerung × 200 Vorgänge/Tag = massive Produktivitätsverluste. |
+| **Arbeitskontext** | Open-Plan-Büro, nutzt Headset. Muss schnell zwischen Aufgaben wechseln. |
+| **Werte** | Zuverlässigkeit, Datenschutz/DSGVO-Compliance, Sicherheit (OWASP-Bewusstsein), Tastenkürzel, Workflow-Integration, Barrierefreiheit |
+| **Frustrationen** | Unsichere Datenverarbeitung, fehlende DSGVO-Konformität, Sicherheitslücken, App-Abstürze, unzuverlässige Kernfunktionen, fehlende Team-Features |
 | **Zahlungsbereitschaft** | Team-Budget — entscheidet für ihr Team. Braucht Business-/Team-Pricing. ROI muss klar sein. |
-| **Entscheidungsmuster** | Evaluiert 3 Tools systematisch über 1 Woche → entscheidet für das Team → rollt aus |
+| **Entscheidungsmuster** | Evaluiert 3 Tools systematisch über 1 Woche → prüft Datenschutzerklärung + Sicherheitskonzept → entscheidet für das Team → rollt aus |
 
 **Was Sarah von einer UI erwartet:**
 - Tastenkürzel für alles — sie will die Maus so wenig wie möglich nutzen
-- Schneller Wechsel zwischen Diktat und Bearbeitung
-- Zuverlässige Erkennung auch bei Fachbegriffen (Produktnamen, Ticketnummern)
+- Transparente Datenschutz- und Sicherheitsinformationen: Wo werden Daten gespeichert? Verschlüsselung? DSGVO-Konformität? Auftragsverarbeitungsvertrag verfügbar?
+- Keine unsicheren Defaults: HTTPS everywhere, keine unverschlüsselten Datenübertragungen, sichere Authentifizierung
+- Zuverlässige Kernfunktionen auch bei Dauerbetrieb
 - Keine Überraschungen: gleiche UI, gleiches Verhalten, jeden Tag
 - Barrierefreiheit: Screenreader-Kompatibilität (ein Teammitglied ist sehbehindert)
-- Team-Verwaltung: Lizenzen, gemeinsame Wörterbücher, einheitliche Einstellungen
-- Status-Feedback: Sie muss immer wissen, ob Diktat aktiv ist, ob Text gespeichert wurde
+- Team-Verwaltung: Lizenzen, gemeinsame Einstellungen, Rollen und Berechtigungen
+- Status-Feedback: Sie muss immer wissen, was die App gerade tut und ob Aktionen erfolgreich waren
 
 **Sarahs innerer Monolog bei einer neuen App:**
-> "Ok, Tastenkürzel zum Starten? ... Strg+Shift+D? Gut, kann ich mir merken. ... Die Erkennung ist... ok, 'Rücksendeschein' hat sie als 'rück Sende Schein' erkannt. Mist. ... Kann ich ein benutzerdefiniertes Wörterbuch anlegen? ... Wo sind die Team-Einstellungen? ... Hmm, nur Einzellizenz? Dann muss ich 8 Mal kaufen? Unbrauchbar für uns."
+> "Ok, Tastenkürzel zum Starten? ... Strg+Shift+K? Gut. ... Wo ist die Datenschutzerklärung? ... 'Daten werden auf US-Servern verarbeitet' — ohne Auftragsverarbeitungsvertrag? Kann ich meinem Team nicht zumuten. ... Hmm, nur Einzellizenz? Dann muss ich 8 Mal kaufen? Unbrauchbar für uns."
 
-**Sarahs Kipppunkt**: Sie verwirft das Tool, wenn es im Dauerbetrieb unzuverlässig ist oder keine Team-Features bietet.
+**Sarahs Kipppunkt**: Sie verwirft das Tool, wenn Datenschutz/DSGVO-Konformität unklar ist, Sicherheitsbedenken bestehen, es im Dauerbetrieb unzuverlässig ist, oder keine Team-Features bietet.
 
 ---
 
@@ -250,8 +252,10 @@ Manchmal haben die Personas widersprüchliche Bedürfnisse. Hier die Leitlinien:
 |----------|------------|
 | Mia will Einfachheit, Sarah will Power-Features | Progressive Disclosure: Einfache Defaults + "Erweitert"-Bereich für Power-User |
 | Tom will Premium-Design, Sarah will Effizienz | Beides ist vereinbar: Premium-Design mit Tastenkürzel-Support und schnellen Workflows |
-| Mia versteht "Cloud vs. Lokal" nicht, Tom will die Wahl | Smarter Default + einfache Erklärung. Tom findet die Option, Mia muss sie nicht verstehen. |
+| Mia versteht technische Optionen nicht, Tom will die Wahl | Smarter Default + einfache Erklärung. Tom findet die Option, Mia muss sie nicht verstehen. |
 | Sarah braucht Team-Features, Mia/Tom sind Einzelnutzer | Team-Features in separatem Bereich, der Einzelnutzer nicht verwirrt |
+| Sarah braucht Datenschutz-/Sicherheitstransparenz, Mia will keine langen Texte | Kompakte Datenschutz-Badges ("🔒 DSGVO-konform") im Hauptflow + detaillierte Infos in den Einstellungen für Sarah |
+| Mia will Glass-Effekte und visuelle Eleganz, Sarah will reinen Funktionalismus | Dezente visuelle Effekte, die die Funktion nicht beeinträchtigen. Glass-Elemente als Akzente, nicht als Navigation. |
 
 ---
 

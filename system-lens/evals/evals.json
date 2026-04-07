@@ -15,8 +15,8 @@
     },
     {
       "id": 3,
-      "prompt": "Review the WhisPaste Flutter repository with one holistic lens. I want architecture, dependency, code-quality, and UI/UX findings in one report with clear evidence and confidence levels.",
-      "expected_output": "A WhisPaste-targeted holistic review prompt that later exercises architecture plus UI/UX review in a single skill invocation.",
+      "prompt": "Review this Flutter product repository with one holistic lens. I want architecture, dependency, code-quality, and UI/UX findings in one report with clear evidence and confidence levels.",
+      "expected_output": "A Flutter-targeted holistic review prompt that later exercises architecture plus UI/UX review in a single skill invocation.",
       "files": []
     },
     {
@@ -63,8 +63,8 @@
     },
     {
       "id": 11,
-      "prompt": "Review the Hellerio repository with one holistic lens. I want architecture, dependency, code-quality, security-risk, and UI/UX findings in one report with whole-repo coverage and clear evidence gaps.",
-      "expected_output": "A Hellerio-targeted holistic review path that keeps whole-repo coverage, architecture corroboration, and security hygiene in scope.",
+      "prompt": "Review this product repository with one holistic lens. I want architecture, dependency, code-quality, security-risk, and UI/UX findings in one report with whole-repo coverage and clear evidence gaps.",
+      "expected_output": "A holistic review path that keeps whole-repo coverage, architecture corroboration, and security hygiene in scope.",
       "files": []
     },
     {

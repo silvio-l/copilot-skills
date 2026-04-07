@@ -4,37 +4,37 @@
     {
       "id": 1,
       "prompt": "I need a deep research comparison of PostHog, Mixpanel, and Amplitude for a 25-person B2B SaaS company. We care about product analytics, warehouse export, pricing over the next two years, EU privacy posture, and how much pain the implementation becomes once the team wants custom analysis. I do not want a shallow feature checklist.",
-      "expected_output": "A detailed research brief with scoped assumptions, a decision-oriented comparison, source scoring, contrary evidence, unknowns, and a recommendation grounded in current evidence.",
+      "expected_output": "A detailed research brief with scoped assumptions, a decision-oriented comparison, source scoring, contrary evidence, unknowns, and a recommendation grounded in current evidence, persisted to a Markdown file under the dedicated deep-research artifact root with the absolute saved path returned to the user.",
       "files": []
     },
     {
       "id": 2,
       "prompt": "Research this deeply: are local-first sync stacks mature enough in 2026 for an Electron + React knowledge app used by small teams? Compare serious options like ElectricSQL, Replicache, PowerSync, RxDB, and anything else that actually belongs in the conversation. I care about offline reliability, conflict handling, operational complexity, and whether the ecosystem feels durable.",
-      "expected_output": "A long-form technical landscape review that uses official docs and broader ecosystem evidence, explicitly checks disconfirming evidence, surfaces uncertainty honestly, and gives a practical recommendation.",
+      "expected_output": "A long-form technical landscape review that uses official docs and broader ecosystem evidence, explicitly checks disconfirming evidence, surfaces uncertainty honestly, gives a practical recommendation, and is persisted to a Markdown file under the dedicated deep-research artifact root with the absolute saved path returned to the user.",
       "files": []
     },
     {
       "id": 3,
       "prompt": "Do a real deep research brief on whether an EU-based company with around 400 employees should standardize on ChatGPT Enterprise, Microsoft 365 Copilot, or a mixed approach for internal knowledge work. Include pricing structure, admin controls, data handling claims, integration reality, likely adoption friction, and the strongest arguments against each option.",
-      "expected_output": "A comprehensive vendor comparison with per-source scoring, conflicting evidence called out, and a recommendation tied to company context rather than vendor marketing.",
+      "expected_output": "A comprehensive vendor comparison with per-source scoring, conflicting evidence called out, and a recommendation tied to company context rather than vendor marketing, persisted to a Markdown file under the dedicated deep-research artifact root with the absolute saved path returned to the user.",
       "files": []
     },
     {
       "id": 4,
       "prompt": "Please do a deep research brief on whether TanStack Query or SWR is the better fit for a React app with collaborative editing, optimistic updates, and possible offline caching. I want the answer grounded in official docs first, then broader ecosystem evidence.",
-      "expected_output": "A technical comparison that clearly uses first-party documentation plus broader evidence, includes tradeoffs, and explains confidence levels and remaining gaps.",
+      "expected_output": "A technical comparison that clearly uses first-party documentation plus broader evidence, includes tradeoffs, explains confidence levels and remaining gaps, and is persisted to a Markdown file under the dedicated deep-research artifact root with the absolute saved path returned to the user.",
       "files": []
     },
     {
       "id": 5,
       "prompt": "Research this deeply, but be honest about uncertainty: is the Model Context Protocol ready for regulated enterprise integration programs outside of early adopters? I want current evidence, not just excitement, and I want you to call out if the evidence ceiling is low.",
-      "expected_output": "A research memo that proceeds despite imperfect evidence, explicitly states the evidence ceiling, scores sources, and gives a bounded conclusion instead of fake certainty.",
+      "expected_output": "A research memo that proceeds despite imperfect evidence, explicitly states the evidence ceiling, scores sources, gives a bounded conclusion instead of fake certainty, and is persisted to a Markdown file under the dedicated deep-research artifact root with the absolute saved path returned to the user.",
       "files": []
     },
     {
       "id": 6,
       "prompt": "I have two vendor claims pages I want you to pressure-test as part of a wider deep research effort: https://openai.com/enterprise-privacy and https://www.microsoft.com/en-us/microsoft-365/copilot/enterprise. Compare those claims with independent reporting and tell me what holds up, what is vague, and what would still need direct sales confirmation.",
-      "expected_output": "A source-critical research memo that incorporates user-provided URLs, cross-checks vendor claims against outside evidence, and clearly labels what remains unresolved.",
+      "expected_output": "A source-critical research memo that incorporates user-provided URLs, cross-checks vendor claims against outside evidence, clearly labels what remains unresolved, and is persisted to a Markdown file under the dedicated deep-research artifact root with the absolute saved path returned to the user.",
       "files": []
     }
   ]

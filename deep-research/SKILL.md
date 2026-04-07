@@ -1,6 +1,6 @@
 ---
 name: deep-research
-description: Conduct multi-phase, evidence-backed deep research for complex, high-stakes, multi-source questions such as technology choices, vendor or tool comparisons, market scans, policy investigations, and decision memos where a quick answer would be too shallow. Use this skill whenever the user asks for deep research, a thorough investigation, a serious comparison, "research this deeply", or wants a ChatGPT-style deep research result with broad source gathering, source-by-source evaluation, official documentation grounding, and a long-form final report. Do not use it for simple fact lookups or narrow single-source questions.
+description: Conduct multi-phase, evidence-backed deep research for complex, high-stakes, multi-source questions such as technology choices, vendor or tool comparisons, market scans, policy investigations, and decision memos where a quick answer would be too shallow. Use this skill whenever the user asks for deep research, a thorough investigation, a serious comparison, "research this deeply", or wants a ChatGPT-style deep research result with broad source gathering, source-by-source evaluation, official documentation grounding, and a long-form final report. Persist the completed research as a Markdown artifact under the dedicated deep-research artifact root and return the full saved path. Do not use it for simple fact lookups or narrow single-source questions.
 compatibility: Works best with internet access. Prefer web_search and web_fetch; use Context7 and any first-party documentation tools available in the session when the topic involves specific libraries, frameworks, APIs, products, or vendors.
 ---
 
@@ -139,6 +139,43 @@ Build the final response from claims upward.
 - If the user needs a decision, actually make or narrow the decision unless the evidence is too weak.
 - If the evidence is mixed, explain what would change the conclusion.
 
+### 8. Persist the research artifact
+
+After the synthesis is complete, always create or update a Markdown file that contains the full research brief.
+
+Before writing it, prepare a deterministic artifact path outside the session workspace.
+
+The skill context provides the base directory for this skill. Use the helper script in `scripts/`:
+
+```powershell
+python '<skill-base-dir>\scripts\prepare_research_artifact.py' '<research-topic>'
+```
+
+On Windows, if `python` is not available, use:
+
+```powershell
+py -3 '<skill-base-dir>\scripts\prepare_research_artifact.py' '<research-topic>'
+```
+
+This script returns absolute paths for:
+
+- the dedicated artifact directory
+- the final Markdown report path
+
+Default artifact root:
+
+- `~/.copilot/review-artifacts/deep-research/`
+
+- Save the report under the dedicated deep-research artifact root by default, not in the session workspace.
+- Topic artifacts should live in their own folder under `~/.copilot/review-artifacts/deep-research/` so they remain easy to find later.
+- Use a descriptive, sanitized filename derived from the topic or decision being investigated.
+- If you are refining an existing brief in the same session, prefer updating the same file instead of creating noisy duplicates unless the user explicitly asked for multiple versions.
+- Use an absolute path whenever the environment can provide one.
+- If the user explicitly requested a destination path, honor that instead of the default artifact-root path.
+- Do **not** write the report into the repository by default; use the dedicated artifact root unless the user requested a repo path.
+- The persisted Markdown file is a deliverable, not an optional appendix.
+- If the artifact root is unavailable, surface that blocker clearly instead of silently falling back to a random location.
+
 ## Tooling rules
 
 Use tools intentionally:
@@ -155,6 +192,14 @@ Do **not** avoid a useful specialized tool just because the web already has summ
 ## Output requirements
 
 The final answer should be comprehensive. "Summary" here means synthesis, not aggressive compression.
+
+The final answer must also leave behind a readable, persistent artifact:
+
+- Write the full final research brief to a Markdown file.
+- Ensure the file is saved in the dedicated deep-research artifact root so it survives the current turn and remains discoverable later.
+- Include the complete absolute path in the user-facing response.
+- End the response with a clearly labeled saved-report line so the user can open the file immediately.
+- The inline answer should still summarize the outcome; the file path does not replace the answer.
 
 Use this structure unless the user asks for a different format:
 
@@ -221,6 +266,9 @@ Include this when the topic is contentious, high-stakes, or unusually broad. The
 - Do not hide uncertainty behind confident prose.
 - Do not use every available tool mechanically; use the best tools for the current question.
 - Do not stop at consensus if the downside of being wrong is high.
+- Do not omit the saved Markdown artifact or the full absolute path.
+- Do not save the report into the repository unless the user explicitly asked for that location.
+- Do not default to the session workspace when the dedicated deep-research artifact root is available.
 
 ## Example trigger cases
 

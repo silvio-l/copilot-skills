@@ -1,0 +1,66 @@
+# Copy to homeassistant/local-config.yaml and keep that file ignored.
+# This tracked example must stay generic and secret-free.
+
+instance:
+  name: "Primary Home Assistant"
+  url: "http://YOUR_HA_HOST:8123"
+  installation_type: "YOUR_INSTALLATION_TYPE"
+  locale:
+    language: "YOUR_LANGUAGE_CODE"
+    country: "YOUR_COUNTRY_CODE"
+    timezone: "Region/City"
+  hardware:
+    host: "YOUR_HOST_PLATFORM"
+    notes: "Optional freeform notes about the host platform"
+
+notifications:
+  primary_tts:
+    entity_id: "media_player.example_tts_target"
+  primary_visual:
+    entity_id: "notify.example_visual_target"
+  important_push:
+    service: "notify.example_mobile_app"
+  awake_confirmation:
+    required: true
+    wake_events:
+      - "example_wake_event"
+    wake_entities:
+      - "binary_sensor.example_presence_1"
+      - "binary_sensor.example_presence_2"
+
+mqtt:
+  broker_url: "mqtt://YOUR_MQTT_HOST:1883"
+  zigbee2mqtt:
+    base_topic: "zigbee2mqtt"
+
+assist:
+  preferred_pipeline: "YOUR_PREFERRED_ASSIST_PIPELINE"
+
+areas:
+  preferred:
+    example_area_1: "YOUR_AREA_ID_1"
+    example_area_2: "YOUR_AREA_ID_2"
+
+aliases:
+  entities:
+    example_entity_1: "sensor.example_entity_1"
+    example_entity_2: "media_player.example_entity_2"
+  devices:
+    example_device_1: "Example Device Name"
+
+integrations:
+  preferred:
+    - "mqtt"
+    - "zigbee2mqtt"
+    - "matter"
+  notes:
+    integration_1: "Optional installation note"
+    integration_2: "Optional installation note"
+
+ssh:
+  host: "YOUR_HA_HOST"
+  user: "YOUR_SSH_USER"
+  port: 22
+
+notes:
+  - "Keep real IPs, hostnames, usernames, entity IDs, and device identifiers only in the ignored local copy."

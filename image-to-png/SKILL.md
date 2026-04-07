@@ -54,7 +54,7 @@ PNG and JPG/JPEG files are automatically skipped (not reconverted).
 Run the installer script:
 
 ```powershell
-& "C:\Users\silvi\.copilot\skills\image-to-png\scripts\install_convert_to_png.ps1"
+& "$env:USERPROFILE\.copilot\skills\image-to-png\scripts\install_convert_to_png.ps1"
 ```
 
 This creates two "Send To" shortcuts. After installation:
@@ -73,19 +73,19 @@ This creates two "Send To" shortcuts. After installation:
 ## Uninstallation
 
 ```powershell
-& "C:\Users\silvi\.copilot\skills\image-to-png\scripts\install_convert_to_png.ps1" -Uninstall
+& "$env:USERPROFILE\.copilot\skills\image-to-png\scripts\install_convert_to_png.ps1" -Uninstall
 ```
 
 ## Direct Usage (CLI)
 
 ### PNG Conversion
 ```bash
-python "C:\Users\silvi\.copilot\skills\image-to-png\scripts\convert_to_png.py" file1.webp file2.avif
+python "%USERPROFILE%\.copilot\skills\image-to-png\scripts\convert_to_png.py" file1.webp file2.avif
 ```
 
 ### AI Analysis Prompt
 ```bash
-python "C:\Users\silvi\.copilot\skills\image-to-png\scripts\build_image_prompt.py" screenshot1.png mockup.webp
+python "%USERPROFILE%\.copilot\skills\image-to-png\scripts\build_image_prompt.py" screenshot1.png mockup.webp
 ```
 The prompt is copied to clipboard and ready to paste into any AI chat.
 

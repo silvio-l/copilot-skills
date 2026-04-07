@@ -1,0 +1,4 @@
+# Local-only or machine-generated content that must not be published
+homeassistant/
+**/__pycache__/
+*.pyc

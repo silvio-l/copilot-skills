@@ -213,8 +213,10 @@ qpdf input.pdf --pages . 6-10 -- pages6-10.pdf
 qpdf input.pdf output.pdf --rotate=+90:1  # Rotate page 1 by 90 degrees
 
 # Remove password
-qpdf --password=mypassword --decrypt encrypted.pdf decrypted.pdf
+qpdf --decrypt encrypted.pdf decrypted.pdf
 ```
+
+For password-protected PDFs, provide the password through qpdf's supported password options when you run the command.
 
 ### pdftk (if available)
 ```bash

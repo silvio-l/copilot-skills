@@ -1,0 +1,203 @@
+{
+  "skill_name": "system-lens",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this repository as a whole. I want one combined report covering architecture, code quality, dependency boundaries, and UI/UX if the app has user-facing surfaces. Use evidence, not generic advice.",
+      "expected_output": "A unified review with detected stack, architecture findings, implementation findings, UI/UX findings when applicable, and an evidence bundle.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Run a full-system review of this Flutter app. Include widget architecture, state-management boundaries, theming consistency, desktop/mobile interaction quality, and prioritized next actions.",
+      "expected_output": "A Flutter-aware system review that routes into architecture and UI/UX lanes instead of treating the app as code only.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Review the WhisPaste Flutter repository with one holistic lens. I want architecture, dependency, code-quality, and UI/UX findings in one report with clear evidence and confidence levels.",
+      "expected_output": "A WhisPaste-targeted holistic review prompt that later exercises architecture plus UI/UX review in a single skill invocation.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Review this mixed monorepo, but note that the Flutter app lives in a nested folder. Candidate validation commands must be path-aware and must not assume the repository root is the right working directory.",
+      "expected_output": "The review should keep path-aware validation commands and avoid repo-root-only Flutter or npm commands.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Review this pure Dart package for architecture and dependency boundaries. Skip UI/UX unless you can prove there is a user-facing app surface.",
+      "expected_output": "The skill should avoid auto-routing to Flutter app UI/UX lanes for a non-Flutter Dart package.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "This repository contains backend code plus some HTML documentation files. Review architecture and code quality, but do not force a UI/UX audit unless there is a real product surface.",
+      "expected_output": "The skill should not treat documentation HTML as sufficient proof that a UI/UX review is required.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Fix this one failing Flutter test in a single widget file.",
+      "expected_output": "The skill should recognize this is too narrow for a full-system review and defer to a narrower bug-fix or Flutter-specific workflow.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Review this unfamiliar product repository as a whole. Before judging the architecture, build a brief of likely business goals, major source roots, and open team questions if decision rationale is missing.",
+      "expected_output": "The review should include a whole-repo coverage map, an architecture brief, and explicit open questions instead of guessing missing decision intent.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Run a whole-repo architecture review, but require GPT-5.4 and Claude Sonnet 4.6 to assess the architecture in parallel and keep disagreements visible in the final result.",
+      "expected_output": "The skill should document a mandatory dual-model architecture corroboration step and distinguish shared findings from disagreements.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "This repository already contains SonarQube or SARIF outputs and some architecture diagrams. Use those artifacts as evidence when reviewing boundaries and drift.",
+      "expected_output": "The skill should treat tool outputs and diagrams as evidence inputs rather than relying only on code heuristics.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "Review the Hellerio repository with one holistic lens. I want architecture, dependency, code-quality, security-risk, and UI/UX findings in one report with whole-repo coverage and clear evidence gaps.",
+      "expected_output": "A Hellerio-targeted holistic review path that keeps whole-repo coverage, architecture corroboration, and security hygiene in scope.",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "Run the architecture corroboration step, but if one model stalls, retry once with the same model on a tighter evidence packet and then degrade confidence visibly instead of silently swapping models.",
+      "expected_output": "The skill should preserve the mandatory GPT-5.4 plus Claude Sonnet 4.6 protocol, allow one same-model retry, and keep degraded confidence visible if the second pass still does not arrive.",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "A validation command failed before it could inspect the repository because the current shell is missing or misresolving SDK packages. Keep that blocker visible, but do not present it as a proven repo defect.",
+      "expected_output": "The skill should classify the blocker as repo, environment, or unknown and avoid over-attributing toolchain failures to the reviewed repository.",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "This mixed repository contains a website plus multiple app implementations. Review only the website and keep the other implementations out of scope unless they materially affect the website path.",
+      "expected_output": "The skill should switch into scoped review mode, keep website roots in scope, list excluded roots explicitly, and avoid reviewing the Flutter or Go app just because they share the repository.",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "Review only the Flutter app inside this repository, not the website and not the Go rewrite. Candidate commands, UI review, and architecture coverage should stay on the Flutter side only.",
+      "expected_output": "The skill should resolve a Flutter-only scope, keep Flutter roots and validation commands in scope, and treat website or Go code as excluded unless cross-scope dependencies are explicitly relevant.",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "This mixed repo has a root-level package.json for the website plus nested Flutter and Go implementations. Review only the website. Do not silently widen the scope to the whole repo just because the website manifest sits at repository root.",
+      "expected_output": "The skill should fail closed or require an explicit root selection when a requested ecosystem at repo root would otherwise collapse to whole-repo scope in a mixed repository.",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "Review only the Dart implementation in this mixed repository, but the scope cannot be resolved to concrete roots. Do not silently review everything.",
+      "expected_output": "The skill should keep the scope unresolved, show that no concrete roots were selected, and avoid falling back to whole-repo coverage without explicit user confirmation.",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "Review only the Flutter implementation in this mixed repository where the Flutter app lives under one nested app root. Do not report that parent app root as excluded just because the included scope resolves to lib/test/platform subdirectories inside it.",
+      "expected_output": "The skill should keep sibling roots excluded, but it must not mark the selected Flutter app's parent root as excluded when the scoped children belong to that same app.",
+      "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "Review only the website in this mixed repository. Repository-level Flutter analyzer configs or other tooling files outside the website subtree must not appear as website evidence.",
+      "expected_output": "The skill should keep global README/docs visible when useful, but it should not leak out-of-scope tooling artifacts such as Flutter analysis configs into a website-only review.",
+      "files": []
+    },
+    {
+      "id": 20,
+      "prompt": "This repository contains two Flutter apps. Review only the first Flutter app and keep validation commands attached to that app, not to the sibling Flutter app.",
+      "expected_output": "The skill should keep Flutter validation commands only when their working directory overlaps the selected Flutter scope and should not accept sibling-app commands just because they also start with 'flutter'.",
+      "files": []
+    },
+    {
+      "id": 21,
+      "prompt": "A scoped review failed closed and produced no included roots. The follow-up outline must not invent coverage targets or UI review lanes from unrelated on-disk folders or root-level manifests.",
+      "expected_output": "The skill should keep coverage targets empty, UI review disabled, and the unresolved scope visible until the user clarifies the intended subtree.",
+      "files": []
+    },
+    {
+      "id": 22,
+      "prompt": "You already have a context JSON file, but now you append --include-root website to generate_review_outline.py. Do not silently ignore that flag.",
+      "expected_output": "The script should reject scoped flags when given a precomputed context JSON and tell the user to regenerate the scoped context from the repository path instead.",
+      "files": []
+    },
+    {
+      "id": 23,
+      "prompt": "The target repository happens to live under a parent directory named .copilot or .venv. Do not treat the repository as empty just because one of its ancestor folders matches a skip directory name.",
+      "expected_output": "The repository scan should ignore skipped directories inside the target repo, not skip every file because an ancestor path outside the repo matches a skip token.",
+      "files": []
+    },
+    {
+      "id": 24,
+      "prompt": "Generate a scoped review outline for website-only analysis. Do not label that lane as whole-repo coverage.",
+      "expected_output": "The outline should describe scoped coverage for scoped reviews and reserve whole-repo coverage wording for true whole-repo mode.",
+      "files": []
+    },
+    {
+      "id": 25,
+      "prompt": "This app ships on web plus mobile and desktop targets. Review UX against the platforms it actually ships on and include accessibility, contrast, and localization expectations instead of generic UI comments.",
+      "expected_output": "The skill should derive a compact platform-aware UX brief from the detected targets and evaluate platform fit, accessibility, contrast, and localization as first-class review criteria.",
+      "files": []
+    },
+    {
+      "id": 26,
+      "prompt": "The repository uses a different UI technology than Flutter or Astro, but it still has user-facing surfaces. The review must stay platform- and technology-independent.",
+      "expected_output": "The skill should reason from detected platform families and UX evidence rather than relying on Flutter- or Astro-specific assumptions.",
+      "files": []
+    },
+    {
+      "id": 27,
+      "prompt": "This repository is huge and polyglot. Do not try to review everything in one giant prompt. Show how the system splits the work into root summaries, focused deep-dives, and compact evidence packets.",
+      "expected_output": "The outline should include an explicit divide-and-conquer strategy that keeps large-repo review summary-first, multi-prompt, and evidence-driven.",
+      "files": []
+    },
+    {
+      "id": 28,
+      "prompt": "Review the architecture and UX together. The result should say whether the architecture actually enables the platform-specific UX patterns the shipped product needs.",
+      "expected_output": "The skill should connect architecture and UX by checking whether platform expectations, accessibility, localization, and adaptation are structurally supported or blocked by the current design.",
+      "files": []
+    },
+    {
+      "id": 29,
+      "prompt": "The UI lane should not receive the entire repository when only a few source roots are user-facing. Keep the UX prompt compact and targeted.",
+      "expected_output": "The skill should derive a focused platform-aware UX brief from the relevant UI roots and avoid loading the entire repository or the full knowledge base into a single UX pass.",
+      "files": []
+    },
+    {
+      "id": 30,
+      "prompt": "This is a change-focused review. Start from the delta and impact, not from a full rescan of unrelated roots.",
+      "expected_output": "The skill should prioritize delta/impact analysis first and widen beyond the changed area only when dependency evidence shows the change crosses those boundaries.",
+      "files": []
+    },
+    {
+      "id": 31,
+      "prompt": "Give me more than a flat issue list. I want strengths, weaknesses, opportunities, risks, and how critical the top findings are.",
+      "expected_output": "The skill should include a SWOT-style summary with criticality, not just disconnected findings.",
+      "files": []
+    },
+    {
+      "id": 32,
+      "prompt": "Before you finalize the review, attack your own conclusions and call out anything that is still weakly evidenced or disputed.",
+      "expected_output": "The skill should run a critic-style pass that keeps missing coverage, unsupported claims, and disputed conclusions visible before synthesis.",
+      "files": []
+    },
+    {
+      "id": 33,
+      "prompt": "Do not tell me a vague session file was updated. Save the final review into its own dedicated artifact and print the full absolute path so I know exactly where to read it.",
+      "expected_output": "The skill should treat plan.md as internal session state, materialize a dedicated markdown review artifact, and print the full absolute report path plus the findings JSON path when present.",
+      "files": []
+    }
+  ]
+}

@@ -337,8 +337,10 @@ qpdf --encrypt user_pass owner_pass 256 --print=none --modify=none -- input.pdf 
 qpdf --show-encryption encrypted.pdf
 
 # Remove password protection (requires password)
-qpdf --password=secret123 --decrypt encrypted.pdf decrypted.pdf
+qpdf --decrypt encrypted.pdf decrypted.pdf
 ```
+
+For password-protected PDFs, provide the password through qpdf's supported password options when you run the command.
 
 ## Advanced Python Techniques
 
